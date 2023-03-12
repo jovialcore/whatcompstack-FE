@@ -3353,6 +3353,14 @@ textarea.form-control-lg {
   display: block;
 }
 
+.navbar-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
 .navbar {
   position: relative;
   display: flex;
