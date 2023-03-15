@@ -1,16 +1,14 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import "bootstrap/dist/css/bootstrap.min.css"
-import { Router } from 'vue-router'
-
+import { createApp } from "vue";
+import App from "./App.vue";
+import "bootstrap/dist/css/bootstrap.min.css";
+import router from "./routes";
 // General Css
 
-import "./assets/vendor/css/core.css" // i don't know if this is boostrap core but boostrap 5 is already downloaded 
-import "./assets/vendor/css/theme-default.css"
+import "./assets/vendor/css/core.css"; // i don't know if this is boostrap core but boostrap 5 is already downloaded
+import "./assets/vendor/css/theme-default.css";
 
-// I don't really know how important these is are but you can always check it from your end 
-import "./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"
-
+// I don't really know how important these is are but you can always check it from your end
+import "./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css";
 
 /**  the commented styles are primarily due to temporary inabiltiy to call them or reference them properly */
 
@@ -20,8 +18,7 @@ import "./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"
 // import "https://fonts.gstatic.com"
 
 // native theme fonts
-// import "./assets/vendor/fonts/boxicons.css"
+import "./assets/vendor/fonts/boxicons.css"
 
-
-import "./assets/css/demo.css"
-createApp(App).use(Router).mount('#app')
+// import "./assets/css/demo.css";
+createApp(App).use(router).mount("#app");
