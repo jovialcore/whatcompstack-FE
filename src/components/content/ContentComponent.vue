@@ -4,6 +4,7 @@
             
             <ResultCard />
 
+            
         </div>
     </div>
 </template>
