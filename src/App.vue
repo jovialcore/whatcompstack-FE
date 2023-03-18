@@ -8,7 +8,9 @@
         <div class="content-wrapper">
           
           <!-- I want to  suggest we use this place as the layout ( it will have our footer and navabar ) so all pages/views linked in the routes section can fall here and share the footer and navbar -->
-          <NavBar />
+     
+
+          
           <RouterView />
 
               
@@ -21,12 +23,10 @@
 
 <script>
 
-import NavBar from '@/components/navbar/NavBar.vue';
 import FooterComponent from '@/components/footer/FooterComponent.vue';
 export default {
   name: 'App',
   components: { 
-    NavBar,
     FooterComponent 
   
   }

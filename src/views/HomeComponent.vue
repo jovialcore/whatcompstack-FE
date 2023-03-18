@@ -1,4 +1,6 @@
 <template>
+
+<NavBar />
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row mb-5">
 
@@ -36,15 +38,19 @@
 </template>
 
 <script>
+
+import NavBar from '@/components/navbar/NavBar.vue';
 import getCompanies from '@/composables/getCompanies';
 
 export default {
+    name : 'HomeComponent',
+    components: {NavBar},
  
     setup() {
 
         const { companies } = getCompanies();
 
-        return { companies }
+        return { companies}
     }
 }
 
