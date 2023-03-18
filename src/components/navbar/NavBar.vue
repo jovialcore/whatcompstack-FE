@@ -15,6 +15,8 @@
 import { ref } from 'vue'
 
 export default {
+    name: 'NavBar',
+    
     setup() {
         const search = ref('')
 
