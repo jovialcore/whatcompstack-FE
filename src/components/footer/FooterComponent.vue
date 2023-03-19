@@ -1,5 +1,8 @@
 <template>
-    <footer class="content-footer footer bg-footer-theme">
-       
+    <footer >
+        <hr />
+        <span>
+            &#169; 2023 WhatCompanyStack
+        </span>
     </footer>
 </template>

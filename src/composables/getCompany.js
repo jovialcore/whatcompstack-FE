@@ -1,7 +1,7 @@
 import { ref } from "vue";
 
 const getCompany = (id) => {
-    const company = ref(null)
+	const company = ref(null);
 	const companies = [
 		{
 			id: "1",
@@ -11,9 +11,9 @@ const getCompany = (id) => {
 			database_driver: ["mariadb"],
 			devops: ["azure", "digitalOcean", "heroku"],
 			ceo: "Ox",
-			ceo_contact: "linked.com/in/ox",
+			ceo_contact: "https://www.linkedin.com/in/danieliheonu",
 			cto: "Odogwu Ox",
-			cto_contact: "liniked.com/in/cndnkd",
+			cto_contact: "https://www.linkedin.com/in/danieliheonu",
 			hr: "Mrs chidinma",
 			hr_contact: null,
 			testimonials: null,
@@ -29,9 +29,9 @@ const getCompany = (id) => {
 			database_driver: ["mysql"],
 			devops: ["azure", "digitalOcean", "heroku"],
 			ceo: "odogwu Machalla (unicode developer) ",
-			ceo_contact: "linked.com/in/unicodedeveloper",
+			ceo_contact: "https://www.linkedin.com/in/danieliheonu",
 			cto: "Odogwu Machalla",
-			cto_contact: "liniked.com/in/cndnkd",
+			cto_contact: "https://www.linkedin.com/in/danieliheonu",
 			hr: "Mrs chidiadi",
 			hr_contact: null,
 			testimonials: null,
@@ -41,7 +41,7 @@ const getCompany = (id) => {
 		},
 	];
 
-    company.value = companies.filter(company => company.id === id)[0]
+	company.value = companies.filter((company) => company.id === id)[0];
 
 	return { company };
 };
