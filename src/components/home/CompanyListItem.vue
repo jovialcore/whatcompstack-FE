@@ -3,7 +3,7 @@
         <div class="card mb-3">
             <div class="row g-0 mb-2">
                 <div class="col-md-4 img-card">
-                    <img class="card-img card-img-left" src="@/assets/img/elements/12.jpg" alt="Card image" />
+                    <img class="card-img card-img-left cmp-logo h-100 w-100" :src="company.logo" alt="Card image" />
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -31,3 +31,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.cmp-logo {
+    object-fit: cover;
+}
+</style>
