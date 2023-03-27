@@ -3353,14 +3353,6 @@ textarea.form-control-lg {
   display: block;
 }
 
-.navbar-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  justify-content: space-around;
-}
-
 .navbar {
   position: relative;
   display: flex;
@@ -3876,14 +3868,14 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1.5rem 1.5rem;
-  cursor: pointer;
+  padding: 1rem;
 }
 
 .card-title {
   margin-bottom: 0.875rem;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.6);
   font-weight: bolder;
+  font-style: italic;
 }
 
 .card-subtitle {
