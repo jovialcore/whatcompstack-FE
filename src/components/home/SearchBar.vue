@@ -4,7 +4,7 @@
             <div class="navbar-nav align-items-center w-100" id="nav-container">
                 <div class="d-flex align-items-center w-100" id="nav-body">
                     <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none w-100" v-model="search" placeholder="Search..." aria-label="Search..." />
+                    <input type="text" class="form-control border-0 shadow-none w-100" placeholder="Search..." aria-label="Search..." />
                 </div>
             </div>
         </div>
@@ -12,15 +12,8 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 
 export default {
     name: 'SearchBar',
-    
-    setup() {
-        const search = ref('')
-
-        return { search }
-    }
 }
 </script>
