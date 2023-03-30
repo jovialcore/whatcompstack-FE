@@ -1,15 +1,17 @@
 <template>
     <div class="container-xxl flex-grow-1 container-p-y">
-        <!-- Examples -->
-        <div class="row mb-5">
+        <div class="d-flex justify-content-center mt-5" v-if="!isLoading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div class="row mb-5" v-else>
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card h-100">
-                    <img class="card-img-top company-logo" width="200" height="200" src="../assets/img/elements/edenlife.jpeg" alt="Card image cap" />
+                    <img class="card-img-top company-logo" width="200" height="200" :src="company.logo" alt="Card image cap" />
                     <div class="card-body">
                         <h5 class="card-title fst-normal"> {{ company.name }}</h5>
-                        <p class="card-text">
-                            Paystack is a technology company solving payments problems for ambitious businesses. Our mission
-                            is to help businesses in Africa become profitable, envied, and loved </p>
+                        <p class="card-text">{{ company.about }}</p>
                         <a href="#" class="btn btn-outline-secondary">Visit Company website </a>
                     </div>
                 </div>
@@ -56,9 +58,9 @@ export default {
 
     setup(props) {
         
-        const { company } = getCompany(props.id)
+        const { company, isLoading } = getCompany(props.id)
 
-        return { company }
+        return { company, isLoading }
     }
 }
 </script>
