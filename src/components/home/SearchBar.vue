@@ -4,7 +4,7 @@
             <div class="navbar-nav align-items-center w-100" id="nav-container">
                 <div class="d-flex align-items-center w-100" id="nav-body">
                     <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none w-100" placeholder="Search..." aria-label="Search..." />
+                    <input type="text" class="form-control border-0 shadow-none w-100" @keypress.enter="searchCompanies" v-model="search" placeholder="Search..." aria-label="Search..." />
                 </div>
             </div>
         </div>
@@ -12,8 +12,21 @@
 </template>
 
 <script>
+import getCompanies from '@/composables/getCompanies';
 
 export default {
     name: 'SearchBar',
+    
+    data() {
+        return {
+            search: ""
+        }
+    },
+    methods: {
+        searchCompanies(){
+            // console.log("enter pressed", this.search)
+            getCompanies(this.search)
+        }
+    }
 }
 </script>
