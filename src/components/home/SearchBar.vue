@@ -18,7 +18,7 @@ import getCompanies from '@/composables/getCompanies';
 
 import { ref, } from 'vue';
 
-const search = ref('')
+const search = ref('php')
 
 function searchCompanies() {
     // console.log("enter pressed", this.search)

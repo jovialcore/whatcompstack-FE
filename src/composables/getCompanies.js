@@ -1,20 +1,28 @@
-import { ref } from "vue";
+import { ref, } from "vue";
 import axios from "axios";
 
-const getCompanies = (search) => {
-	let companies = ref([]);
+const getCompanies = () => {
+	const companies = ref([]);
 	const isLoading = ref(false);
+	const searchTerm = ref('');
 
 	const load = async () => {
 		try {
-			const url = search
-				? "https://jovialcore.tech/wsc/api/company/stack/all?item=php"
-				: "https://jovialcore.tech/wsc/api/company/stack/all";
+			let url = 'https://jovialcore.tech/wsc/api/company/stack/all';
+
+			if (searchTerm.value) {
+				url += `?item=${searchTerm.value}`;
+			}
 
 			const res = await axios.get(url);
-			companies.value = res.data.data;
-			console.log(companies.value )
-			isLoading.value = true; console.log(companies.value);
+
+			if (searchTerm.value) {
+				companies.value = res.data.data;
+			} else {
+				companies.value.push(...res.data.data);
+			}
+
+			isLoading.value = true;
 		} catch (err) {
 			console.log(err.message);
 			companies.value = [];
@@ -23,7 +31,7 @@ const getCompanies = (search) => {
 
 	load();
 
-	return { companies, isLoading };
+	return { companies, isLoading, searchTerm };
 };
 
 export default getCompanies;
