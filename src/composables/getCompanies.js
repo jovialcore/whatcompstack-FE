@@ -1,37 +1,47 @@
-import { ref, } from "vue";
+import { ref , reactive} from "vue";
 import axios from "axios";
 
-const getCompanies = () => {
-	const companies = ref([]);
+const getCompanies = (search) => {
+	let companies = reactive({});
 	const isLoading = ref(false);
-	const searchTerm = ref('');
+	const searchTerm = ref(search)
+
+
 
 	const load = async () => {
 		try {
-			let url = 'https://jovialcore.tech/wsc/api/company/stack/all';
-
 			if (searchTerm.value) {
-				url += `?item=${searchTerm.value}`;
+				const res = await axios.get(
+					`https://jovialcore.tech/wsc/api/company/stack/all?item=${searchTerm.value}`
+				);
+			
+				companies.value = res.data.data
+				console.log(companies.value)
+				console.log(Array.isArray(companies.value) )
+
+				// if (data.length === 0) {
+				// 	const allResponse = await axios.get('https://jovialcore.tech/wsc/api/company/stack/all')
+				// 	companies.value = allResponse.data
+				// } else {
+				// 	companies.value = data
+				// }
 			}
 
-			const res = await axios.get(url);
-
-			if (searchTerm.value) {
-				companies.value = res.data.data;
-			} else {
-				companies.value.push(...res.data.data);
-			}
+			// } else {
+			// 	const res = await axios.get("https://jovialcore.tech/wsc/api/company/stack/all");
+			// 	companies.value = res.data[0].data;
+			// }
 
 			isLoading.value = true;
 		} catch (err) {
 			console.log(err.message);
 			companies.value = [];
 		}
-	};
+	}
 
 	load();
 
-	return { companies, isLoading, searchTerm };
+	return { companies, isLoading, };
 };
 
 export default getCompanies;

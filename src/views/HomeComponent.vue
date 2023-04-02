@@ -13,6 +13,8 @@
     </div>
 </template>
 
+
+
 <script>
 import SearchBar from '@/components/home/SearchBar.vue';
 import CompanyListItem from '@/components/home/CompanyListItem.vue';
