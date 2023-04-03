@@ -17,7 +17,7 @@ export default {
         const searchTerm = ref('');
         const searchResults = ref([]);
 
-        // const loadAllResult = async () => {
+        // onst loadAllResult = async () => {
 
         // }
         onMounted(async () => {
