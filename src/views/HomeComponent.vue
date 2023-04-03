@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input type="text" v-model="searchTerm" placeholder="Search...">
-        <button @click="search">Search</button>
+        <input  @keypress.enter="search" type="text" v-model="searchTerm" placeholder="Search...">
+        <!-- <button>Search</button> -->
         <ul>
             <li v-for="(item, index) in searchResults" :key="index">{{ item }}</li>
         </ul>
@@ -44,11 +44,7 @@ export default {
             }
         };
 
-        // watch((searchTerm) => {
-        //     if (!searchTerm.value)  {
-        //         search()
-        //     }
-        // })
+  
         return {
             searchTerm,
             searchResults,
