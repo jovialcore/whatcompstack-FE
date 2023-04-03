@@ -9,7 +9,7 @@
 </template>
   
 <script>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted} from 'vue';
 import axios from 'axios';
 
 export default {
@@ -44,11 +44,11 @@ export default {
             }
         };
 
-        watch((searchTerm) => {
-            if (!searchTerm.value)  {
-                search()
-            }
-        })
+        // watch((searchTerm) => {
+        //     if (!searchTerm.value)  {
+        //         search()
+        //     }
+        // })
         return {
             searchTerm,
             searchResults,
