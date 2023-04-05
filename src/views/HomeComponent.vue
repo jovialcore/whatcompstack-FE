@@ -1,56 +1,39 @@
 <template>
-    <div>
-        <input  @keypress.enter="search" type="text" v-model="searchTerm" placeholder="Search...">
-        <!-- <button>Search</button> -->
-        <ul>
-            <li v-for="(item, index) in searchResults" :key="index">{{ item }}</li>
-        </ul>
+    <SearchBar @enterr="handleSearch" />
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row mb-5" v-if="isLoading">
+            <CompanyListItem v-for="company in companies" :key="company.id" :company="company" />
+        </div>
+        <div class="d-flex justify-content-center mt-5" v-else>
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
     </div>
 </template>
   
 <script>
-import { ref, onMounted} from 'vue';
-import axios from 'axios';
-
+import SearchBar from '@/components/home/SearchBar.vue';
+import CompanyListItem from '@/components/home/CompanyListItem.vue';
+import getCompanies from '@/composables/getCompanies';
 export default {
+    name: 'HomeComponent',
+    components: {
+        SearchBar,
+        CompanyListItem
+    },
+
     setup() {
-        const searchTerm = ref('');
-        const searchResults = ref([]);
+        const { companies, isLoading, load } = getCompanies();
 
-        // onst loadAllResult = async () => {
+        const handleSearch = async (search) => {
 
-        // }
-        onMounted(async () => {
-            const response = await axios.get(`https://jovialcore.tech/wsc/api/company/stack/all`);
-            searchResults.value = response.data.data
-
-        })
-
-        const search = async () => {
-            try {   
-                if (searchTerm.value) {
-                    console.log(searchTerm.value)
-                    const response = await axios.get(`https://jovialcore.tech/wsc/api/company/stack/all?item=${searchTerm.value}`);
-                    searchResults.value = response.data.data
-
-                } else {
-                    console.log('no search term')
-                    const response = await axios.get(`https://jovialcore.tech/wsc/api/company/stack/all`);
-                    searchResults.value = response.data.data
-                }
-            } catch (error) {
-                searchResults.value = [];
-                console.error(error);
-            }
+            await load(search)
         };
 
-  
-        return {
-            searchTerm,
-            searchResults,
-            search
-        };
+
+        return { companies, isLoading, handleSearch };
     }
-};
+}
 </script>
   

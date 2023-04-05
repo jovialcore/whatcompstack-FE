@@ -1,26 +1,21 @@
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 
-const getCompanies = (search) => {
-    const companies = ref([]);
-    const isLoading = ref(false);
-    const searchTerm = ref(search)
+const getCompanies = () => {
+	const companies = ref([]);
+	const isLoading = ref(false);
 
-	const load = async () => {
+	const load = async (search) => {
 		try {
-			if (searchTerm.value) {
-
+			if(search){
 				const res = await axios.get(
-					`https://jovialcore.tech/wsc/api/company/stack/all?item=${searchTerm.value}`
+					`https://jovialcore.tech/wsc/api/company/stack/all?item=${search}`
 				);
 				companies.value = res.data.data;
-				console.log(companies.value)
-				isLoading.value = true
+			}else{
+				const res = await axios.get("https://jovialcore.tech/wsc/api/company/stack/all");
+				companies.value = res.data.data;
 			}
-			// } else {
-			// 	const res = await axios.get("https://jovialcore.tech/wsc/api/company/stack/all");
-			// 	companies.value = res.data.data;
-			// }
 
 			isLoading.value = true;
 		} catch (err) {
@@ -29,13 +24,9 @@ const getCompanies = (search) => {
 		}
 	}
 
-	watch(searchTerm, () => {
-        load()
-    })
+	load();
 
-	load()
-
-	return { companies, isLoading };
+    return { companies, isLoading, load };
 };
 
 export default getCompanies;
