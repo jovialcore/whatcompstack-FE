@@ -1,7 +1,7 @@
 <template>
     <div class="col">
         <div class="card-body py-4">
-            <h5 class="card-title fst-normal">{{ title }}</h5>
+            <h5 class="card-title fst-normal">{{ title }} </h5>
             <div class="card-text "> {{ body }}</div>
             <div> 
                 <a :href="link" target="_blank">
