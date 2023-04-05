@@ -7,12 +7,12 @@ const getCompanies = () => {
 
 	const load = async (search) => {
 		try {
-			if(search){
+			if (search) {
 				const res = await axios.get(
 					`https://jovialcore.tech/wsc/api/company/stack/all?item=${search}`
 				);
 				companies.value = res.data.data;
-			}else{
+			} else {
 				const res = await axios.get("https://jovialcore.tech/wsc/api/company/stack/all");
 				companies.value = res.data.data;
 			}
@@ -26,7 +26,7 @@ const getCompanies = () => {
 
 	load();
 
-    return { companies, isLoading, load };
+	return { companies, isLoading, load };
 };
 
 export default getCompanies;
