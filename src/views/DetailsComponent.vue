@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h5 class="card-title fst-normal"> {{ company.name }}</h5>
                         <p class="card-text">{{ company.about }}</p>
-                        <a href="#" class="btn btn-outline-secondary">Visit Company website </a>
+                        <a href="#" class="btn btn-outline-secondary">Visit Company website  </a>
                     </div>
                 </div>
             </div>
@@ -23,6 +23,7 @@
 
                     <div class="row">
                         <TechnologyInfoCard title="Backend" :stacks="company.stack_be" />
+                        
                         <TechnologyInfoCard title="Frontend" :stacks="company.stack_fe" />
                         <TechnologyInfoCard title="Devops" :stacks="company.devops" />
                         <TechnologyInfoCard title="Backend" :stacks="company.database_driver" />
@@ -32,6 +33,7 @@
                 <h4 class="mt-4 text-start">Human/Business</h4>
                 <div class="card text-start  mb-3 w-100">
                     <div class="row">
+            
                         <HumanInfoCard title="CTO" :body="company.ceo" :link="company.ceo_contact" />
                         <HumanInfoCard title="CEO" :body="company.cto" :link="company.cto_contact" />
                         <HumanInfoCard title="Human Resource" :body="company.hr" :link="company.hr_contact" />
