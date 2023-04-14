@@ -14,20 +14,19 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 
 export default {
     name: 'SearchBar',
+    emits: ['enterr'],
 
-    data() {
-        return {
-            search: ""
+    setup(props, { emit }) {
+        const search = ref('')
+        const searchCompanies = () => {
+            emit('enterr', search.value)
         }
-    },
-    methods: {
-        searchCompanies() {
-            // console.log("enter pressed", this.search)
-            this.$emit("enterr", this.search)
-        }
+
+        return { search, searchCompanies }
     }
 }
 </script>
