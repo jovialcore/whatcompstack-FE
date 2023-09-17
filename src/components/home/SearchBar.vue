@@ -5,7 +5,7 @@
             <div class="navbar-nav align-items-center w-100" id="nav-container">
                 <div class="d-flex align-items-center w-100" id="nav-body">
                     <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none w-100" @keypress.enter="searchCompanies"
+                    <input type="text" class="form-control border-0 shadow-none w-100" @input="searchCompanies"
                         v-model="search" placeholder="Search..." aria-label="Search..." />
                 </div>
             </div>
@@ -22,7 +22,8 @@ export default {
 
     setup(props, { emit }) {
         const search = ref('')
-        const searchCompanies = () => {
+        const searchCompanies = (event) => {
+            search.value = event.target.value
             emit('enterr', search.value)
         }
 

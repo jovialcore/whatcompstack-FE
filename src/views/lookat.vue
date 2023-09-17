@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div>
         <input  @keypress.enter="search" type="text" v-model="searchTerm" placeholder="Search...">

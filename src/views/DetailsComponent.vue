@@ -8,34 +8,33 @@
         <div class="row mb-5" v-else>
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card h-100">
-                    <img class="card-img-top company-logo" width="200" height="200" :src="company.logo" alt="Card image cap" />
+                    <img class="card-img-top company-logo" width="200" height="200" :src="company.logo" alt="company logo" />
                     <div class="card-body">
-                        <h5 class="card-title fst-normal"> {{ company.name }}</h5>
+                        <h5 class="card-title fst-normal"> {{ company.company }}</h5>
                         <p class="card-text">{{ company.about }}</p>
-                        <a href="#" class="btn btn-outline-secondary">Visit Company website  </a>
+                        <a :href="company.company_url" target="_blank" class="btn btn-outline-secondary">Visit Company website  </a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-8">
                 <h4 class="pb-1 mb-4 text-start">Technology</h4>
-                <div class="card text-start  mb-3 w-100">
+                <div class="card text-start mb-3 w-100">
 
                     <div class="row">
-                        <TechnologyInfoCard title="Backend" :stacks="company.stack_be" />
-                        
-                        <TechnologyInfoCard title="Frontend" :stacks="company.stack_fe" />
-                        <TechnologyInfoCard title="Devops" :stacks="company.devops" />
-                        <TechnologyInfoCard title="Backend" :stacks="company.database_driver" />
+                        <TechnologyInfoCard title="Backend" :stacks="stack_be" :frameworks="be_framework" />
+                        <TechnologyInfoCard title="Frontend" :stacks="stack_fe" :frameworks="fe_framework" />
+                        <!-- <TechnologyInfoCard title="Devops" :stacks="company.devops" /> -->
+                        <!-- <TechnologyInfoCard title="Database" :stacks="company.database_driver" /> -->
                     </div>
 
                 </div>
                 <h4 class="mt-4 text-start">Human/Business</h4>
-                <div class="card text-start  mb-3 w-100">
+                <div class="card text-start mb-3 w-100">
                     <div class="row">
             
                         <HumanInfoCard title="CTO" :body="company.ceo" :link="company.ceo_contact" />
-                        <HumanInfoCard title="CEO" :body="company.cto" :link="company.cto_contact" />
+                        <HumanInfoCard title="CEO" :body="company.cto_name" :link="company.cto_contact" />
                         <HumanInfoCard title="Human Resource" :body="company.hr" :link="company.hr_contact" />
                     </div>
 
@@ -60,9 +59,23 @@ export default {
 
     setup(props) {
         
-        const { company, isLoading } = getCompany(props.id)
+        const { 
+            company, 
+            isLoading, 
+            stack_be, 
+            stack_fe,
+            be_framework,
+            fe_framework
+        } = getCompany(props.id)
 
-        return { company, isLoading }
+        return { 
+            company, 
+            isLoading,
+            stack_be,
+            stack_fe,
+            be_framework,
+            fe_framework
+        }
     }
 }
 </script>
@@ -70,7 +83,7 @@ export default {
 <style>
 
 .company-logo {
-    object-fit: cover;
+    object-fit: contain;
 }
 
 </style>

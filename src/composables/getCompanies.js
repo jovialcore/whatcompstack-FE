@@ -7,13 +7,13 @@ const getCompanies = () => {
 
 	const load = async (search) => {
 		try {
+			const res = await axios.get("https://api.jovialcore.tech/api/company/stack/all");
+
 			if (search) {
-				const res = await axios.get(
-					`https://jovialcore.tech/wsc/api/company/stack/all?item=${search}`
-				);
-				companies.value = res.data.data;
+				companies.value = res.data.data.filter((company) => {
+					return company.company.toLowerCase().includes(search.toLowerCase());
+				});
 			} else {
-				const res = await axios.get("https://jovialcore.tech/wsc/api/company/stack/all");
 				companies.value = res.data.data;
 			}
 
@@ -22,7 +22,7 @@ const getCompanies = () => {
 			console.log(err.message);
 			companies.value = [];
 		}
-	}
+	};
 
 	load();
 
