@@ -2,7 +2,7 @@
     <div class="col">
         <div class="card-body py-4">
             <div class="d-flex align-items-center">
-                <h5 v-if="stacks.length !== 0" class="card-title fst-normal pt-3">{{ title }}</h5>
+                <h5 class="card-title fst-normal pt-3">{{ title }}</h5>
                 <button v-if="frameworks.length !== 0" @click="toggleButton()" type="button" class="button btn-primary btn-sm text-sm ms-3">Framework</button>
             </div>
             <p class="card-text">

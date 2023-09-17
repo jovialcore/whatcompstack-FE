@@ -9,8 +9,8 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ company.company }}</h5>
                         <div>
-                            <CompanyListDetail v-if="stack_be.length !== 0" stack="Backend" :stacks="stack_be" />
-                            <CompanyListDetail v-if="stack_fe.length !== 0" stack="Frontend" :stacks="stack_fe" />
+                            <CompanyListDetail stack="Backend" :stacks="stack_be" />
+                            <CompanyListDetail stack="Frontend" :stacks="stack_fe" />
                         </div>
                     </div>
                     <router-link :to="{ name: 'Details', params: { id: company.id } }">
