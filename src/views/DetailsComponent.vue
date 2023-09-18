@@ -7,7 +7,7 @@
         </div>
         <div class="row mb-5" v-else>
             <div class="col-md-6 col-lg-4 mb-3">
-                <div class="card h-100">
+                <div class="card h-auto">
                     <img class="card-img-top company-logo" width="200" height="200" :src="company.logo" alt="company logo" />
                     <div class="card-body">
                         <h5 class="card-title fst-normal"> {{ company.company }}</h5>
@@ -48,6 +48,7 @@
 import getCompany from '@/composables/getCompany'
 import HumanInfoCard from '@/components/details/CompanyInfoCard/HumanInfoCard.vue'
 import TechnologyInfoCard from '@/components/details/CompanyInfoCard/TechnologyInfoCard.vue'
+import { ref } from 'vue'
 
 export default {
     props: ['id'],
@@ -58,14 +59,15 @@ export default {
     },
 
     setup(props) {
+
+        const fe_framework = ref([])
         
         const { 
             company, 
             isLoading, 
             stack_be, 
             stack_fe,
-            be_framework,
-            fe_framework
+            be_framework
         } = getCompany(props.id)
 
         return { 
