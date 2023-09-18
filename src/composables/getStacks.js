@@ -7,10 +7,7 @@ const getStacks = (stacks) => {
 		return stack_list.value;
 	}
 
-	stacks.forEach((obj) => {
-		const stack = Object.keys(obj)[0];
-		stack_list.value = [...stack_list.value, stack];
-	});
+	stack_list.value = stacks.map((obj) => Object.keys(obj)[0]);
 
 	return stack_list.value;
 };
