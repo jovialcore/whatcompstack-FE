@@ -22,7 +22,7 @@
             <div class="col-md-6 col-lg-8">
                 <h4 class="pb-1 mb-1 text-start">Technology</h4>
                 <div class="row p-2 justify-content-around">
-                    <div class="card text-start mb-3 col me-3 stackHeight" >
+                    <div class="card text-start mb-2 col me-3 stackHeight" >
                         <TechnologyInfoCardBe title="Backend" :stacks="stack_be" :frameworks="be_framework" />
                         <!-- <TechnologyInfoCard title="Devops" :stacks="company.devops" /> -->
                         <!-- <TechnologyInfoCard title="Database" :stacks="company.database_driver" /> -->
@@ -33,8 +33,8 @@
 
                     </div>
                 </div>
-                <h4 class="mt-4 text-start">Human/Business</h4>
-                <div class="card text-start mb-3 w-100">
+                <!-- <h4 class="mt-4 text-start">Human/Business</h4>
+                <div class="card text-start mb-2 w-100">
                     <div class="row">
 
                         <HumanInfoCard title="CTO" :body="company.ceo" :link="company.ceo_contact" />
@@ -42,7 +42,7 @@
                         <HumanInfoCard title="Human Resource" :body="company.hr" :link="company.hr_contact" />
                     </div>
 
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
 
 <script>
 import getCompany from '@/composables/getCompany'
-import HumanInfoCard from '@/components/details/CompanyInfoCard/HumanInfoCard.vue'
+// import HumanInfoCard from '@/components/details/CompanyInfoCard/HumanInfoCard.vue'
 import TechnologyInfoCardBe from '@/components/details/CompanyInfoCard/TechnologyInfoCardBe.vue'
 import TechnologyInfoCardFe from '@/components/details/CompanyInfoCard/TechnologyInfoCardFe.vue'
 import { ref } from 'vue'
@@ -59,7 +59,7 @@ export default {
     props: ['id'],
     name: 'DetailsComponent',
     components: {
-        HumanInfoCard,
+        // HumanInfoCard,
         TechnologyInfoCardBe,
         TechnologyInfoCardFe
     },
