@@ -22,7 +22,7 @@
             <div class="col-md-6 col-lg-8">
                 <h4 class="pb-1 mb-1 text-start">Technology</h4>
                 <div class="row p-2 justify-content-around">
-                    <div class="card text-start mb-2 col me-3 stackHeight" >
+                    <div class="card text-start mb-2 col-12 col-sm me-auto me-sm-3 stackHeight" >
                         <TechnologyInfoCardBe title="Backend" :stacks="stack_be" :frameworks="be_framework" />
                         <!-- <TechnologyInfoCard title="Devops" :stacks="company.devops" /> -->
                         <!-- <TechnologyInfoCard title="Database" :stacks="company.database_driver" /> -->
