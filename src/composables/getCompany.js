@@ -12,7 +12,7 @@ const getCompany = (id) => {
 	const load = async () => {
 		try {
 			const res = await axios.get(
-				`https://api.jovialcore.tech/api/company/stack/details/${id}`
+				`http://localhost:8000/api/company/stack/details/${id}`
 			);
 			company.value = res.data.data;
 
@@ -20,9 +20,10 @@ const getCompany = (id) => {
 
 			stack_be.value = getStacks(company.value.stack_be_plang);
 
-			stack_fe.value = getStacks(company.value.stack_fe_plang);
+			stack_fe.value = getStacks(company.value.stack_fe_framework);
 
 			be_framework.value = getStacks(company.value.stack_be_framework);
+
 		} catch (err) {
 			company.value = null;
 		}

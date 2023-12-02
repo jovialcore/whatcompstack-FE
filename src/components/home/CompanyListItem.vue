@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <router-link :to="{ name: 'Details', params: { id: company.id } }">
-                        <span class="btn btn-dark btn-sm mb-3">view more</span>
+                        <span class="btn btn-dark  mb-3">View More</span>
                     </router-link>
                 </div>
             </div>
@@ -36,7 +36,7 @@ export default {
 
         const stack_be = getStacks(props.company.stack_be_plang)
 
-        const stack_fe = getStacks(props.company.stack_fe_plang)
+        const stack_fe = getStacks(props.company.stack_fe_framework)
 
         return {
             stack_be,
