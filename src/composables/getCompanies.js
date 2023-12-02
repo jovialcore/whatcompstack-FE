@@ -7,11 +7,12 @@ const getCompanies = () => {
 
 	let stackBePlangKeys;
 	let stackBeFrameworkKeys;
-	// let stackFePlangKeys;
+	let stackFePlangKeys;
 
 	const load = async (search) => {
 		try {
-			const res = await axios.get("https://api.jovialcore.tech/api/company/stack/all");
+			const res = await axios.get("http://localhost:8000/api/company/stack/all");
+
 
 			if (search) {
 				companies.value = res.data.data.filter((item) => {
@@ -24,6 +25,7 @@ const getCompanies = () => {
 							(obj) => Object.keys(obj)[0]
 						);
 					}
+
 					if (
 						stackBePlangKeys.some((key) =>
 							key.toLowerCase().includes(search.toLowerCase())
@@ -45,22 +47,28 @@ const getCompanies = () => {
 						return true;
 					}
 
-					// if (item.stack_fe_plang.length !== 0) {
-					// 	stackFePlangKeys = item.stack_fe_plang.map(
-					// 		(obj) => Object.keys(obj)[0]
-					// 	);
-					// }
-					// if (
-					// 	stackFePlangKeys.some((key) =>
-					// 		key.toLowerCase().includes(search.toLowerCase())
-					// 	)
-					// ) {
-					// 	return true;
-					// }
+					if (item.stack_fe_framework.length !== 0) {
+						stackFePlangKeys = item.stack_fe_framework.map(
+							(obj) => Object.keys(obj)[0]
+						);
+
+						console.log(stackFePlangKeys.some((key) => key.toLowerCase().includes(search.toLowerCase())))
+					}
+
+					if (
+						stackFePlangKeys.some((key) =>
+							key.toLowerCase().includes(search.toLowerCase())
+						)
+					) {
+
+
+						return true;
+					}
 
 					return false;
 				});
 			} else {
+				console.log(res.data.data)
 				companies.value = res.data.data;
 			}
 
@@ -73,7 +81,7 @@ const getCompanies = () => {
 
 	load();
 
-	return { companies, isLoading, load };
+	return { companies, isLoading, load, stackFePlangKeys };
 };
 
 export default getCompanies;
