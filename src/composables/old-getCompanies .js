@@ -14,7 +14,7 @@ const getCompanies = () => {
 			const res = await axios.get("http://localhost:8000/api/company/stack/all");
 
 
-			if (search) {
+			if (search) { 
 				companies.value = res.data.data.filter((item) => {
 					if (item.company.toLowerCase().includes(search.toLowerCase())) {
 						return true;
