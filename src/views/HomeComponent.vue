@@ -14,15 +14,14 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row mb-5">
-            <CompanyListItem v-for="company in companies.data" :key="company.id" :company="company" />
+            <CompanyListItem v-for="company in filteredCompanies" :key="company.id" :company="company" />
         </div>
     </div>
 </template> 
 <script>
 import CompanyListItem from '@/components/home/CompanyListItem.vue';
 import useGetCompanies from '@/composables/getCompanies';
-// import { computed, onMounted, ref } from "vue";
-// import axios from "axios";
+
 
 export default {
     name: 'HomeComponent',
@@ -32,7 +31,7 @@ export default {
 
     setup() {
 
-        const { companies, searchTerm } = useGetCompanies();
+        const { companies, searchTerm, filteredCompanies } = useGetCompanies();
 
         // const searchTerm = ref('');
         // const companies = ref([]);
@@ -68,7 +67,7 @@ export default {
 
         // })
 
-        return { companies, searchTerm };
+        return { companies, searchTerm,filteredCompanies };
     }
 }
 </script>
