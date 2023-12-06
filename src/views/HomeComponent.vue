@@ -47,7 +47,7 @@ export default {
         onMounted(() => {
             fetchData();
         });
-        
+
         const filteredData = computed(() => {
             const term = searchTerm.value.toLocaleLowerCase()
             if (searchTerm.value) {
@@ -58,9 +58,7 @@ export default {
                 })
             }
             else {
-
                 return companies.value.data
-
             }
 
         })
