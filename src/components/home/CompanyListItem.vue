@@ -3,12 +3,11 @@
         <div class="card text-start" style="">
             <div class="card-body my-0">
                 <div class="row justify-content-between" style="">
-
+    
                     <div class="col-6">
                         <h4 class="card-title">Eden Life</h4>
                         <p class="card-text">
                             <span><b> Frontend: </b> </span> Vuejs, React
-
                             <br />
                             <span><b> Backend: </b></span> PHP, Laravel
                         </p>
@@ -23,7 +22,7 @@
                     Learn More
                 </router-link>
 
-             
+
             </div>
         </div>
     </div>
