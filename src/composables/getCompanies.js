@@ -1,87 +1,33 @@
-import { ref } from "vue";
-import axios from "axios";
+import { onMounted, ref } from 'vue'
+import axios from 'axios'
 
-const getCompanies = () => {
-	const companies = ref([]);
-	const isLoading = ref(false);
 
-	let stackBePlangKeys;
-	let stackBeFrameworkKeys;
-	let stackFePlangKeys;
+const useGetCompanies = () => {
 
-	const load = async (search) => {
+	const companies = ref([])
+	const searchTerm = ref('');
+
+	const fetchData = async () => {
+
 		try {
-			const res = await axios.get("http://localhost:8000/api/company/stack/all");
-
-
-			if (search) {
-				companies.value = res.data.data.filter((item) => {
-					if (item.company.toLowerCase().includes(search.toLowerCase())) {
-						return true;
-					}
-
-					if (item.stack_be_plang.length !== 0) {
-						stackBePlangKeys = item.stack_be_plang.map(
-							(obj) => Object.keys(obj)[0]
-						);
-					}
-
-					if (
-						stackBePlangKeys.some((key) =>
-							key.toLowerCase().includes(search.toLowerCase())
-						)
-					) {
-						return true;
-					}
-
-					if (item.stack_be_framework.length !== 0) {
-						stackBeFrameworkKeys = item.stack_be_framework.map(
-							(obj) => Object.keys(obj)[0]
-						);
-					}
-					if (
-						stackBeFrameworkKeys.some((key) =>
-							key.toLowerCase().includes(search.toLowerCase())
-						)
-					) {
-						return true;
-					}
-
-					if (item.stack_fe_framework.length !== 0) {
-						stackFePlangKeys = item.stack_fe_framework.map(
-							(obj) => Object.keys(obj)[0]
-						);
-
-						console.log(stackFePlangKeys.some((key) => key.toLowerCase().includes(search.toLowerCase())))
-					}
-
-					if (
-						stackFePlangKeys.some((key) =>
-							key.toLowerCase().includes(search.toLowerCase())
-						)
-					) {
-
-
-						return true;
-					}
-
-					return false;
-				});
-			} else {
-				console.log(res.data.data)
-				companies.value = res.data.data;
-			}
-
-			isLoading.value = true;
+			const response = await axios.get("http://localhost:8000/api/company/stack/all");
+			companies.value = response.data;
 		} catch (err) {
-			console.log(err.message);
+			console.error("Error fetching data:", err.message);
 			companies.value = [];
 		}
-	};
+	}
 
-	load();
+	onMounted(() => {
+		fetchData();
+	});
 
-	return { companies, isLoading, load, stackFePlangKeys };
-};
 
-export default getCompanies;
+	onMounted(() => {
+		fetchData()
+	})
+
+	return { companies, searchTerm, fetchData }
+}
+
+export default useGetCompanies 

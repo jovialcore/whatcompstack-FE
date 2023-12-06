@@ -14,14 +14,15 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row mb-5">
-            <CompanyListItem v-for="company in filteredData" :key="company.id" :company="company" />
+            <CompanyListItem v-for="company in companies.data" :key="company.id" :company="company" />
         </div>
     </div>
 </template> 
 <script>
 import CompanyListItem from '@/components/home/CompanyListItem.vue';
-import { computed, onMounted, ref } from "vue";
-import axios from "axios";
+import useGetCompanies from '@/composables/getCompanies';
+// import { computed, onMounted, ref } from "vue";
+// import axios from "axios";
 
 export default {
     name: 'HomeComponent',
@@ -30,40 +31,44 @@ export default {
     },
 
     setup() {
-        const searchTerm = ref('');
-        const companies = ref([]);
 
-        const fetchData = async () => {
+        const { companies, searchTerm } = useGetCompanies();
 
-            try {
-                const response = await axios.get("http://localhost:8000/api/company/stack/all");
-                companies.value = response.data;
-            } catch (err) {
-                console.error("Error fetching data:", err.message);
-                companies.value = [];
-            }
-        }
+        // const searchTerm = ref('');
+        // const companies = ref([]);
 
-        onMounted(() => {
-            fetchData();
-        });
+        // const fetchData = async () => {
 
-        const filteredData = computed(() => {
-            const term = searchTerm.value.toLocaleLowerCase()
-            if (searchTerm.value) {
-                return companies.value.data.filter((item) => {
-                    if (item.company.toLowerCase().includes(term)) {
-                        return true;
-                    }
-                })
-            }
-            else {
-                return companies.value.data
-            }
+        //     try {
+        //         const response = await axios.get("http://localhost:8000/api/company/stack/all");
+        //         companies.value = response.data;
+        //     } catch (err) {
+        //         console.error("Error fetching data:", err.message);
+        //         companies.value = [];
+        //     }
+        // }
 
-        })
+        // onMounted(() => {
+        //     fetchData();
+        // });
 
-        return { searchTerm, companies, filteredData };
+        // const filteredData = computed(() => {
+        //     const term = searchTerm.value.toLocaleLowerCase()
+        //     if (searchTerm.value) {
+        //         return companies.value.data.filter((item) => {
+        //             if (item.company.toLowerCase().includes(term)) {
+        //                 return true;
+        //             }
+
+        //         })
+        //     }
+        //     else {
+        //         return companies.value.data
+        //     }
+
+        // })
+
+        return { companies, searchTerm };
     }
 }
 </script>
