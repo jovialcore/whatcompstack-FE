@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - chidi-ui_fixes
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
