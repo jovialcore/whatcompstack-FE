@@ -27,5 +27,5 @@ jobs:
           server: ftp.jovialcore.tech
           username: wcs200296@whatcompanystack.com
           password: ${{ secrets.ftp_password }}
-          protocol: ftps
-          port: 21
+          # protocol: ftps
+          # port: 21
