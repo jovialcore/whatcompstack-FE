@@ -11,7 +11,8 @@ const getCompanies = () => {
 
 	const load = async (search) => {
 		try {
-			const res = await axios.get("http://localhost:8000/api/company/stack/all");
+			//http://localhost:8000/api/company/stack/all
+			const res = await axios.get("");
 
 
 			if (search) { 

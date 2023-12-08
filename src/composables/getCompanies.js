@@ -2,7 +2,6 @@ import { onMounted, ref, computed } from 'vue'
 import axios from 'axios'
 
 
-
 const useGetCompanies = () => {
 
 	const companies = ref([])
@@ -17,7 +16,7 @@ const useGetCompanies = () => {
 	const fetchData = async () => {
 
 		try {
-			const response = await axios.get("http://localhost:8000/api/company/stack/all");
+			const response = await axios.get("https://admin.whatcompanystack.com/api/company/stack/all");
 			companies.value = response.data;
 		} catch (err) {
 			console.error("Error fetching data:", err.message);
@@ -43,6 +42,7 @@ const useGetCompanies = () => {
 						(obj) => Object.keys(obj)[0]
 					)
 				}
+				
 				if (bePlangs.value.some((key) => key.toLowerCase().includes(term))) {
 					return true
 				}

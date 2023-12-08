@@ -12,7 +12,7 @@ const getCompany = (id) => {
 	const load = async () => {
 		try {
 			const res = await axios.get(
-				`http://localhost:8000/api/company/stack/details/${id}`
+				`https://admin.whatcompanystack.com/api/company/stack/details/${id}`
 			);
 			company.value = res.data.data;
 
