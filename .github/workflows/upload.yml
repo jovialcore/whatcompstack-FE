@@ -26,8 +26,8 @@ jobs:
         with:
           server: ftp.jovialcore.tech
           username: wcs200296@whatcompanystack.com
-          password: ${{ secrets.ftp_password }}
+          password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           local-dir: ./dist/
-          server-dir: /whatcompanyFe
+          server-dir: /whatcompanyFe/
          
