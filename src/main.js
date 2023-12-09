@@ -3,6 +3,8 @@ import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import router from "./routes";
+import VueGtag from "vue-gtag";
+
 // General Css
 
 
@@ -23,4 +25,8 @@ import "./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css";
 import "./assets/vendor/fonts/boxicons.css"
 
 // import "./assets/css/demo.css";
-createApp(App).use(router).mount("#app");
+createApp(App).use(router, VueGtag, {
+    config: {
+        id: "GA_MEASUREMENT_ID"
+    }
+}).mount("#app");
