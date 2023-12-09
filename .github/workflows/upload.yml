@@ -28,5 +28,6 @@ jobs:
           username: wcs200296@whatcompanystack.com
           password: ${{ secrets.ftp_password }}
           protocol: ftps
-          local-dir: ./dist/
+          local-dir: /dist/
+          server-dir: /whatcompanyFe/
          
