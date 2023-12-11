@@ -3,10 +3,10 @@ import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import router from "./routes";
+import  VueGtag  from "vue-gtag";
 
 
 // General Css
-
 
 import "./assets/vendor/css/theme-default.css";
 import "./assets/vendor/css/core.css"; // i don't know if this is boostrap core but boostrap 5 is already downloaded
@@ -24,5 +24,10 @@ import "./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css";
 // native theme fonts
 import "./assets/vendor/fonts/boxicons.css"
 
+
 // import "./assets/css/demo.css";
-createApp(App).use(router).mount("#app");
+createApp(App).use(router, VueGtag, {
+    config: {
+        id: "GA_MEASUREMENT_ID"
+    }
+}).mount("#app");
