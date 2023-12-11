@@ -33,7 +33,7 @@ app.use(router);
 
 app.use(VueGtag, {
   config: { 
-    id: "GA_MEASUREMENT_ID",
+    id: "G-GFP168Q9E8",
   },
 }, router); 
 
