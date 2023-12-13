@@ -1,55 +1,65 @@
 <template>
-    <div class="col-md-4 mb-3">
-        <div class="card px-2">
-            <div class="row g-0">
-                <div class="col-md-4 img-card ">
-                    <img class="card-img card-img-left cmp-logo h-100 w-100" :src="company.logo" alt="Card image" />
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ company.company }} </h5>
-                        <div>
-                            <CompanyListDetail stack="Backend" :stacks="stack_be" />
-                            <CompanyListDetail stack="Frontend" :stacks="stack_fe" />
-                        </div>
+    <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card text-start" style="">
+            <div class="card-body my-0">
+                <div class="row justify-content-between" style="">
+
+                    <div class="col-sm-9 col-8">
+                        <h4 class="card-title">{{ company.company }}</h4>
+                        <p class="card-text">
+
+                            <span><b>Backend:</b></span><span class="ms-1" v-for="stack_be in stacks_be " :key="stack_be">
+                                {{
+                                    stack_be }}</span>
+                            <br />
+
+                            <span v-if="stacks_fe.length !== 0"><b> Frontend: </b> <span class="ms-1"
+                                    v-for="stack_fe in stacks_fe" :key="stack_fe">
+                                    {{
+                                        stack_fe
+                                    }} </span>
+                            </span>
+                            <span v-else></span>
+                        </p>
                     </div>
-                    <router-link :to="{ name: 'Details', params: { id: company.id } }">
-                        <span class="btn btn-dark  mb-3">View More</span>
-                    </router-link>
+                    <div class="col-sm-3 col-4" style=" width: 100px; height: 100px;">
+                        <img class="img-fluid mt-3 mt-sm-auto" :src="company.logo" alt="Card image"
+                            style=" border-radius: 50%; vertical-align:bottom;" />
+                    </div>
                 </div>
+                <router-link :to="{ name: 'Details', params: { id: company.id } }" class="btn btn-outline-secondary mt-3">
+                    Learn More
+                </router-link>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import CompanyListDetail from '@/components/home/CompanyListDetail.vue';
+
 import getStacks from '@/composables/getStacks'
 
 export default {
     props: ['company'],
     name: 'CompanyListItem',
-    components: { 
-        CompanyListDetail 
+    components: {
+
     },
-    setup(props){
+    setup(props) {
+        
+        const stacks_be = getStacks(props.company.stack_be_plang)
 
-        const stack_be = getStacks(props.company.stack_be_plang)
-
-        const stack_fe = getStacks(props.company.stack_fe_framework)
+        const stacks_fe = getStacks(props.company.stack_fe_framework)
 
         return {
-            stack_be,
-            stack_fe
+            stacks_be,
+            stacks_fe
         }
     }
 }
 </script>
 
 <style>
-.cmp-logo {
-    object-fit: contain;
-}
 .card-title {
     font-style: normal !important;
 }
