@@ -9,8 +9,7 @@
                         <p class="card-text">
 
                             <span><b>Backend:</b></span><span class="ms-1" v-for="stack_be in stacks_be " :key="stack_be">
-                                {{
-                                    stack_be }}</span>
+                                {{ stack_be }}</span>
                             <br />
 
                             <span v-if="stacks_fe.length !== 0"><b> Frontend: </b> <span class="ms-1"
@@ -27,9 +26,8 @@
                             style=" border-radius: 50%; vertical-align:bottom;" />
                     </div>
                 </div>
-                <router-link :to="{ name: 'Details', params: { id: company.id } }" class="btn btn-outline-secondary mt-3">
-                    Learn More
-                </router-link>
+                <button @click="navigateToCompany(company.id)" class="btn btn-outline-secondary mt-3">Learn More</button>
+
             </div>
         </div>
     </div>
@@ -38,6 +36,8 @@
 <script>
 
 import getStacks from '@/composables/getStacks'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router';
 
 export default {
     props: ['company'],
@@ -46,16 +46,32 @@ export default {
 
     },
     setup(props) {
-        
-        const stacks_be = getStacks(props.company.stack_be_plang)
 
+        const store = useStore()
+        const router = useRouter()
+        const stacks_be = getStacks(props.company.stack_be_plang)
         const stacks_fe = getStacks(props.company.stack_fe_framework)
+
+        const navigateToCompany = (id) => {
+            // set company id in store
+            const storedId = localStorage.getItem('company');
+            if (storedId !== id) {
+                localStorage.setItem('company', JSON.stringify(id));
+                store.dispatch('setCompanyId', id)
+            }else{
+                store.dispatch('setCompanyId', JSON.parse(storedId))
+            }
+
+            // changed route from company id to name
+            router.push({ name: 'Details', params: { name: props.company.company.toLowerCase().replace(/\s+/g, '-') } })
+        }
 
         return {
             stacks_be,
-            stacks_fe
+            stacks_fe,
+            navigateToCompany
         }
-    }
+    },
 }
 </script>
 
