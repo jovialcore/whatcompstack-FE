@@ -1,12 +1,12 @@
 <template>
-	<div>
+	<div class="container-fluid">
 		<div v-if="!isLoading" class="d-flex justify-content-center mt-5">
 			<div class="spinner-border" role="status">
 				<span class="visually-hidden">Loading...</span>
 			</div>
 		</div>
 		<div v-else>
-			<div class="d-flex justify-content-start align-items-center gap-2 ms-5" style="margin-bottom: 50px;">
+			<div class="d-flex justify-content-start align-items-center gap-2" style="margin-bottom: 50px;">
 				<router-link to="/" class="text-black">
 					Home
 				</router-link>
