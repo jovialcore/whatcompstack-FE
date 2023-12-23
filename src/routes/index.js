@@ -11,7 +11,7 @@ const routes = [
 		component: HomeComponent,
 	},
 	{
-		path: "/details/:id",
+		path: "/details/:name",
 		name: "Details",
 		component: DetailsComponent,
 		props: true,
@@ -25,7 +25,7 @@ const routes = [
 		path: "/add-company",
 		name: "AddCompany",
 		component: AddCompany,
-	}
+	},
 ];
 
 const router = createRouter({
