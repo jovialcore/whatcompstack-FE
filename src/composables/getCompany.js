@@ -8,6 +8,7 @@ const getCompany = (id) => {
 	const stack_be = ref([]);
 	const stack_fe = ref([]);
 	const be_framework = ref([]);
+	const mobile_stacks = ref([]);
 
 	const load = async () => {
 		try {
@@ -24,6 +25,7 @@ const getCompany = (id) => {
 
 			be_framework.value = getStacks(company.value.stack_be_framework);
 
+			mobile_stacks.value = getStacks(company.value.stack_mobile);
 		} catch (err) {
 			company.value = null;
 		}
@@ -37,6 +39,7 @@ const getCompany = (id) => {
 		stack_be,
 		stack_fe,
 		be_framework,
+		mobile_stacks,
 	};
 };
 

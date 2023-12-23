@@ -26,7 +26,16 @@
 									{{ stack_fe }}
 								</span>
 							</span>
-							<span v-else></span>
+							<span v-else>
+								<b> Mobile: </b>
+									<span
+										class="ms-1"
+										v-for="stack_mobile in stacks_mobile"
+										:key="stack_mobile"
+									>
+										{{ stack_mobile }}
+									</span>
+							</span>
 						</p>
 					</div>
 					<div class="col-sm-3 col-4" style="width: 100px; height: 100px">
@@ -57,12 +66,13 @@
 	export default {
 		props: ["company"],
 		name: "CompanyListItem",
-		components: {},
+		
 		setup(props) {
 			const store = useStore();
 			const router = useRouter();
 			const stacks_be = getStacks(props.company.stack_be_plang);
 			const stacks_fe = getStacks(props.company.stack_fe_framework);
+			const stacks_mobile = getStacks(props.company.stack_mobile);
 
 			const navigateToCompany = (id) => {
 				// set company id in store
@@ -78,6 +88,7 @@
 			return {
 				stacks_be,
 				stacks_fe,
+				stacks_mobile,
 				navigateToCompany,
 			};
 		},
