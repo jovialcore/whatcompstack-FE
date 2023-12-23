@@ -25,7 +25,7 @@ import "./assets/vendor/fonts/boxicons.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 // import "./assets/css/demo.css";
 
@@ -49,7 +49,7 @@ const store = createStore({
 	},
 });
 
-library.add(faArrowLeft);
+library.add([faArrowUpRightFromSquare, faAngleRight]);
 
 createApp(App)
 	.use(router)
