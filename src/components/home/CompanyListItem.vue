@@ -16,7 +16,7 @@
 							>
 							<br />
 
-							<span v-if="stacks_fe.length !== 0"
+							<span v-if="stacks_fe.length > 0"
 								><b> Frontend: </b>
 								<span
 									class="ms-1"
@@ -26,7 +26,7 @@
 									{{ stack_fe }}
 								</span>
 							</span>
-							<span v-else>
+							<span v-else-if="stacks_mobile > 0">
 								<b> Mobile: </b>
 									<span
 										class="ms-1"
@@ -36,6 +36,7 @@
 										{{ stack_mobile }}
 									</span>
 							</span>
+							<span v-else></span>
 						</p>
 					</div>
 					<div class="col-sm-3 col-4" style="width: 100px; height: 100px">
