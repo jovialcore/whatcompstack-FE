@@ -1,48 +1,50 @@
 <template>
-	<div class="container-xxl flex-grow-1 container-p-y">
-		<div class="d-flex justify-content-center mt-5" v-if="!isLoading">
+	<div>
+		<div v-if="!isLoading" class="d-flex justify-content-center mt-5">
 			<div class="spinner-border" role="status">
 				<span class="visually-hidden">Loading...</span>
 			</div>
 		</div>
-		<div class="row justify-content-around" v-else>
-			<div class="d-flex justify-content-start align-items-center gap-2 ms-0 ms-md-5" style="margin-bottom: 50px;">
+		<div v-else>
+			<div class="d-flex justify-content-start align-items-center gap-2 ms-5" style="margin-bottom: 50px;">
 				<router-link to="/" class="text-black">
 					Home
 				</router-link>
 				<font-awesome-icon icon="fa-solid fa-angle-right" />
 				<span style="color: #17A1FA; cursor: pointer;">{{ company.company.charAt(0).toUpperCase() }}{{ company.company.slice(1).toLowerCase() }}</span>
 			</div>
-			<div class="col-6 col-lg-4 me-0" style="width: 360px; margin-right: 40px;">
-				<div class="card company-card">
-					<img :src="company.logo" class="card-img-top company-logo" alt="" >
-					<div class="company-card-body w-100">
-						<span class="company-name">{{ company.company.toUpperCase() }}</span>
-						<span class="company-info">{{ company.about }}</span>
+			<div class="row g-0 justify-content-center justify-content-md-evenly">
+				<div class="col-12 col-md-5 col-lg-3">
+					<div class="card company-card">
+						<img :src="company.logo" class="card-img-top company-logo" alt="" >
+						<div class="company-card-body w-100">
+							<span class="company-name">{{ company.company.toUpperCase() }}</span>
+							<span class="company-info">{{ company.about }}</span>
+						</div>
+						<a :href="company.company_url" target="_blank" class="company-link">
+							<span>Visit company website</span>
+							<font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" style="color: white;" />
+						</a>
 					</div>
-					<a :href="company.company_url" target="_blank" class="company-link">
-						<span>Visit company website</span>
-						<font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" style="color: white;" />
-					</a>
 				</div>
-			</div>
-			<div class="col-6 col-lg-8">
-				<div class="row mt-4 mt-md-0 mt-lg-0 info-card">
-					<TechnologyInfoCard
-						name="Backend"
-						:stacks="stack_be"
-						:frameworks="be_framework" />
-					<TechnologyInfoCard
-						name="Frontend"
-						:stacks="['JavaScript']"
-						:frameworks="stack_fe"
-						:classObject="{'d-none': company.is_mobile_only || stack_fe.length === 0 }"
-					/>
-					<TechnologyInfoCard
-						name="Mobile"
-						:frameworks="mobile_stacks"
-						:classObject="{'d-none': mobile_stacks.length === 0 }"
-					/>
+				<div class="col-12 col-md-5 col-lg-7">
+					<div class="row flex-column flex-lg-row mt-4 mt-md-0 info-card px-3">
+						<TechnologyInfoCard
+							name="Backend"
+							:stacks="stack_be"
+							:frameworks="be_framework" />
+						<TechnologyInfoCard
+							name="Frontend"
+							:stacks="['JavaScript']"
+							:frameworks="stack_fe"
+							:classObject="{'d-none': company.is_mobile_only || stack_fe.length === 0 }"
+						/>
+						<TechnologyInfoCard
+							name="Mobile"
+							:frameworks="mobile_stacks"
+							:classObject="{'d-none': mobile_stacks.length === 0 }"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -160,5 +162,10 @@
 }
 .info-card {
 	gap: 40px;
+}
+@media (max-width: 768px) {
+	.info-card {
+		gap: 20px;
+	}
 }
 </style>

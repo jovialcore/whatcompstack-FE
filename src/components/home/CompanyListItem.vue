@@ -26,7 +26,7 @@
 									{{ stack_fe }}
 								</span>
 							</span>
-							<span v-else-if="stacks_mobile > 0">
+							<span v-else-if="stacks_mobile.length > 0">
 								<b> Mobile: </b>
 									<span
 										class="ms-1"

@@ -1,5 +1,5 @@
 <template>
- <div class="col-12 col-lg-5 w-sm-100 technology-card" :class="classObject">
+ <div class="technology-card col-lg-5" :class="classObject">
     <div class="language">
         <p>{{ name }}</p>
         <span class="title text-start">Programming Language(s)</span>
@@ -36,13 +36,18 @@ export default {
     align-items: flex-start;
     justify-content: center;
     flex-shrink: 0;
-    width: 400px;
-    height: 222px;
     padding: 24px;
     gap: 24px;
     border-radius: 15px;
     background-color: #FFFFFF;
 }
+
+@media (min-width: 1024px) {
+    .technology-card {
+        width: 50%;
+    }
+}
+
 .language p {
     color: #27272E;
     font-family: Inter;
@@ -61,20 +66,15 @@ export default {
     font-weight: 400;
     line-height: 23px;
     margin-bottom: 8px;
-}
-.language div {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 .framework, .language {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
-}
-.framework div {
-    display: flex;
-    gap: 12px;
 }
 .not-available {
     font-size: 12px;
