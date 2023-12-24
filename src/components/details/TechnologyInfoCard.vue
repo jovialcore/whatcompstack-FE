@@ -6,14 +6,14 @@
         <div v-if="stacks && stacks.length > 0" class="stacks">
             <StackCard v-for="stack in stacks" :key="stack" :stack="stack" />
         </div>
-        <span class="not-available" v-else>None Yet</span>
+        <span class="not-available" v-else>We have no list at the moment</span>
     </div>
     <div class="framework">
         <span class="title">Framework</span>
         <div v-if="frameworks && frameworks.length > 0" class="stacks">
             <StackCard v-for="framework in frameworks" :key="framework" :stack="framework" />
         </div>
-        <span class="not-available" v-else>None Yet</span>
+        <span class="not-available" v-else>We have no list at the moment</span>
     </div>
  </div>
 </template>
