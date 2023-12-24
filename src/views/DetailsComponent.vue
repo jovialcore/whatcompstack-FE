@@ -16,7 +16,7 @@
 			<div class="row g-0 justify-content-center justify-content-md-evenly">
 				<div class="col-12 col-md-5 col-lg-3">
 					<div class="card company-card">
-						<img :src="company.logo" class="card-img-top company-logo" alt="" >
+						<img :src="company.logo" class="card-img-top h-50 mx-100" alt="" >
 						<div class="company-card-body w-100">
 							<span class="company-name">{{ company.company.toUpperCase() }}</span>
 							<span class="company-info">{{ company.about }}</span>
@@ -91,10 +91,6 @@
 </script>
 
 <style>
-.company-logo {
-	max-width: 100%;
-	height: 50%;
-}
 .company-card {
 	border-radius: 20px;
 	border: 0.2px solid #3A3A3A;
