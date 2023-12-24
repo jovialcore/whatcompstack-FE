@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div v-else>
-			<div class="d-flex justify-content-start align-items-center gap-2" style="margin-bottom: 50px;">
+			<div class="d-flex justify-content-start align-items-center gap-2 ms-md-5 mb-3 mb-md-5">
 				<router-link to="/" class="text-black">
 					Home
 				</router-link>
@@ -19,7 +19,13 @@
 						<img :src="company.logo" class="card-img-top h-50 mx-100" alt="" >
 						<div class="company-card-body w-100">
 							<span class="company-name">{{ company.company.toUpperCase() }}</span>
-							<span class="company-info">{{ company.about }}</span>
+							<div class="d-inline">
+								<span v-if="showLess" class="company-info">{{ company.about.slice(0, 200) }}...</span>
+								<span v-else class="company-info">{{ company.about }}</span>
+								<span @click="toggleShowLess" style="color: #17A1FA; cursor: pointer;">
+									{{ showLess ? "read more" : "read less" }}
+								</span>
+							</div>
 						</div>
 						<a :href="company.company_url" target="_blank" class="company-link">
 							<span>Visit company website</span>
@@ -68,6 +74,7 @@
 			const store = useStore();
 			const router = useRouter();
 			const id = ref(store.state.companyId);
+			const showLess = ref(true);
 
 			const goBack = () => {
 				router.go(-1);
@@ -77,6 +84,10 @@
 				id.value
 			);
 
+			const toggleShowLess = () => {
+				showLess.value = !showLess.value;
+			};
+
 			return {
 				company,
 				isLoading,
@@ -85,6 +96,8 @@
 				be_framework,
 				mobile_stacks,
 				goBack,
+				showLess,
+				toggleShowLess
 			};
 		},
 	};
@@ -120,6 +133,7 @@
 	font-weight: 400;
 	line-height: 23px;
 	letter-spacing: 0.5px;
+	margin-right: 10px;
 }
 .company-link-container {
 	display: flex;
