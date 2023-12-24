@@ -92,9 +92,8 @@
 
 <style>
 .company-logo {
-	object-fit: fit-content;
-	object-position: center;
-	height: 246.521px;
+	max-width: 100%;
+	height: 50%;
 }
 .company-card {
 	border-radius: 20px;
