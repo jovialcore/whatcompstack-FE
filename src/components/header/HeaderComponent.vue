@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a href="https://github.com/jovialcore/whatcompstack-BE" class="nav-link">Github </a>
+            <a href="https://github.com/jovialcore/whatcompstack-BE" target="_blank" class="nav-link">Github </a>
           </li>
         </ul>
       </div>
