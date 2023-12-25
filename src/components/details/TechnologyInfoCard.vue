@@ -1,31 +1,18 @@
 <template>
  <div class="technology-card col-lg-5" :class="classObject">
-    <div class="language">
-        <p>{{ name }}</p>
-        <span class="title text-start">Programming Language(s)</span>
-        <div v-if="stacks && stacks.length > 0" class="stacks">
-            <StackCard v-for="stack in stacks" :key="stack" :stack="stack" />
-        </div>
-        <span class="not-available" v-else>We have no list at the moment</span>
-    </div>
-    <div class="framework">
-        <span class="title">Framework</span>
-        <div v-if="frameworks && frameworks.length > 0" class="stacks">
-            <StackCard v-for="framework in frameworks" :key="framework" :stack="framework" />
-        </div>
-        <span class="not-available" v-else>We have no list at the moment</span>
-    </div>
+    <span class="stack-name">{{ name }}</span>
+    <TechnologyCard v-for="(item, idx) in title" :key="idx" :stacks="stacks[idx]" :title="item" />
  </div>
 </template>
 
 <script>
-import StackCard from '@/components/details/StackCard.vue'
+import TechnologyCard from './TechnologyCard.vue';
 export default {
-    props: ['name', 'stacks', 'frameworks', 'classObject'],
+    props: ['name', 'stacks', 'title', 'classObject'],
     name: 'TechnologyInfoCard',
     components: {
-        StackCard
-    }
+        TechnologyCard,
+    },
 }
 </script>
 
@@ -34,9 +21,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
     flex-shrink: 0;
     padding: 24px;
+    min-height: 222px;
     gap: 24px;
     border-radius: 15px;
     background-color: #FFFFFF;
@@ -48,7 +35,7 @@ export default {
     }
 }
 
-.language p {
+.stack-name {
     color: #27272E;
     font-family: Inter;
     font-size: 16px;
@@ -58,27 +45,5 @@ export default {
     text-transform: uppercase;
     text-align: left;
 }
-.stacks {
-    color: #425466;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 23px;
-    margin-bottom: 8px;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-.framework, .language {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-}
-.not-available {
-    font-size: 12px;
-    font-style: italic;
-    color: #425466;
-}
+
 </style>

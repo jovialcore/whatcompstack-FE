@@ -37,17 +37,19 @@
 					<div class="row flex-column flex-lg-row mt-4 mt-md-0 info-card px-3">
 						<TechnologyInfoCard
 							name="Backend"
-							:stacks="stack_be"
-							:frameworks="be_framework" />
+							:title="['Programming Language(s)', 'Framework']"
+							:stacks="[stack_be, be_framework]"
+						/>
 						<TechnologyInfoCard
 							name="Frontend"
-							:stacks="['JavaScript']"
-							:frameworks="stack_fe"
+							:title="['Programming Language(s)', 'Framework']"
+							:stacks="[['JavaScript'], stack_fe]"
 							:classObject="{'d-none': company.is_mobile_only || stack_fe.length === 0 }"
 						/>
 						<TechnologyInfoCard
 							name="Mobile"
-							:frameworks="mobile_stacks"
+							:title="['Programming/Frameworks']"
+							:stacks="[mobile_stacks]"
 							:classObject="{'d-none': mobile_stacks.length === 0 }"
 						/>
 					</div>
