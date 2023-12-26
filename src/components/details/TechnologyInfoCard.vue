@@ -37,7 +37,6 @@ export default {
 
 .stack-name {
     color: #27272E;
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;

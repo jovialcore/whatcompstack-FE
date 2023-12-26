@@ -22,7 +22,6 @@ export default {
 }
 .stack-card span {
     color: #505780;
-    font-family: Inter;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;

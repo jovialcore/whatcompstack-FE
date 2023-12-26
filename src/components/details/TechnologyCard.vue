@@ -23,7 +23,6 @@ export default {
 <style>
 .stacks {
     color: #425466;
-    font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
