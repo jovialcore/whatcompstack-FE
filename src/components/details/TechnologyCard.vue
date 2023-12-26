@@ -4,7 +4,7 @@
         <div v-if="stacks && stacks.length > 0" class="stacks">
             <StackCard v-for="stack in stacks" :key="stack" :stack="stack" />
         </div>
-        <span class="not-available" v-else>We have no list at the moment</span>
+        <span class="not-available" v-else>We have no list at the moment 😪</span>
     </div>
 </template>
 
