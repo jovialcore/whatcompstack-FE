@@ -11,7 +11,7 @@
         <!-- mobile logo -->
         <img class="mobile-logo"
           src="https://res.cloudinary.com/chidiebere/image/upload/c_thumb,w_200,g_face/v1703703886/WCS_555555555555.png"
-          >
+           style="width: 1.6em;">
 
       </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
