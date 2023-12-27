@@ -14,14 +14,11 @@
            style="width: 1.6em;">
 
       </router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+    
+      <div class="justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a href="https://github.com/jovialcore/whatcompstack-BE" target="_blank" class="nav-link">Please star (🌟) us
+            <a href="https://github.com/jovialcore/whatcompstack-BE" target="_blank" class="nav-link">🌟 us
               on Github </a>
           </li>
         </ul>
