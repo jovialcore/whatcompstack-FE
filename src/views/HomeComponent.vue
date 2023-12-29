@@ -45,7 +45,6 @@
 			CompanyListItem,
 			PaginationComponent,
 		},
-
 		setup() {
 			const {
 				companies,
