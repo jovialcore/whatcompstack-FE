@@ -120,7 +120,7 @@
 .company-name {
 	color: #000;
 	text-align: center;
-	font-family: Roboto;
+	
 	font-size: 31px;
 	font-style: normal;
 	font-weight: 900;
@@ -129,7 +129,7 @@
 .company-info {
 	color: #3A3A3A;
 	text-align: center;
-	font-family: Roboto;
+	
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
@@ -163,7 +163,7 @@
 .company-link span {
 	color: #FFF;
 	text-align: center;
-	font-family: Roboto;
+	
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 500;
