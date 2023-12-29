@@ -16,24 +16,27 @@
         <div class="row mb-5">
             <CompanyListItem v-for="company in filteredCompanies" :key="company.id" :company="company" />
         </div>
+        <PaginationComponent :paginationCount="paginationCount" v-if="!isLoading" />
     </div>
-</template> 
+</template>
 <script>
+
 import CompanyListItem from '@/components/home/CompanyListItem.vue';
 import useGetCompanies from '@/composables/getCompanies';
-
+import PaginationComponent from '@/components/Pagination.vue';
 
 export default {
     name: 'HomeComponent',
     components: {
-        CompanyListItem
+        CompanyListItem,
+        PaginationComponent
     },
 
     setup() {
+        const { companies, searchTerm, filteredCompanies, isLoading, total, perPage } = useGetCompanies();
+        const paginationCount = Math.ceil(total.value / perPage.value);
 
-        const { companies, searchTerm, filteredCompanies } = useGetCompanies();
-
-        return { companies, searchTerm,filteredCompanies };
+        return { companies, searchTerm,filteredCompanies, isLoading, paginationCount };
     }
 }
 </script>

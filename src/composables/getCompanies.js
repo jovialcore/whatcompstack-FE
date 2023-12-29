@@ -1,35 +1,40 @@
-import { onMounted, ref, computed } from 'vue'
-import axios from 'axios'
+import { onMounted, ref, computed } from "vue";
+import axios from "axios";
 
+const useGetCompanies = (page = 1) => {
+	const companies = ref([]);
+	const searchTerm = ref("");
+	const isLoading = ref(false);
+	const total = ref(0);
+	const perPage = ref(0);
 
-const useGetCompanies = () => {
+	let bePlangs = ref([]);
 
-	const companies = ref([])
-	const searchTerm = ref('');
+	let beFrameworks = ref([]);
 
-	let bePlangs = ref([])
-
-	let beFrameworks = ref([])
-
-	let feLang = ref([])
+	let feLang = ref([]);
 
 	const fetchData = async () => {
-
 		try {
-			const response = await axios.get(`${process.env.VUE_APP_ROOT_API}/api/company/stack/all`);
+			const response = await axios.get(
+				`${process.env.VUE_APP_ROOT_API}/api/company/stack/all?page=${page}`
+			);
 			companies.value = response.data;
+			isLoading.value = true;
+			total.value = response.data.meta.total;
+			perPage.value = response.data.meta.per_page;
 		} catch (err) {
 			console.error("Error fetching data:", err.message);
 			companies.value = [];
 		}
-	}
+	};
 
 	onMounted(() => {
 		fetchData();
 	});
 
 	const filteredCompanies = computed(() => {
-		const term = searchTerm.value.toLocaleLowerCase()
+		const term = searchTerm.value.toLocaleLowerCase();
 
 		if (searchTerm.value) {
 			return companies.value.data.filter((item) => {
@@ -38,40 +43,39 @@ const useGetCompanies = () => {
 				}
 
 				if (item.stack_be_plang.length !== 0) {
-					bePlangs.value = item.stack_be_plang.map(
-						(obj) => Object.keys(obj)[0]
-					)
+					bePlangs.value = item.stack_be_plang.map((obj) => Object.keys(obj)[0]);
 				}
-				
+
 				if (bePlangs.value.some((key) => key.toLowerCase().includes(term))) {
-					return true
+					return true;
 				}
 
 				if (item.stack_be_framework.length !== 0) {
-					beFrameworks.value = item.stack_be_framework.map((obj) => Object.keys(obj)[0])
+					beFrameworks.value = item.stack_be_framework.map(
+						(obj) => Object.keys(obj)[0]
+					);
 				}
 
 				if (beFrameworks.value.some((key) => key.toLowerCase().includes(term))) {
-					return true
+					return true;
 				}
 
 				if (item.stack_fe_framework.length !== 0) {
-					feLang.value = item.stack_fe_framework.map((obj) => Object.keys(obj)[0])
+					feLang.value = item.stack_fe_framework.map((obj) => Object.keys(obj)[0]);
 				}
 
 				if (feLang.value.some((key) => key.toLowerCase().includes(term))) {
-					return true
+					return true;
 				}
 
-				return false
-			})
+				return false;
+			});
+		} else {
+			return companies.value.data;
 		}
-		else {
-			return companies.value.data
-		}
-	})
+	});
 
-	return { companies, searchTerm, fetchData, filteredCompanies }
-}
+	return { companies, searchTerm, fetchData, filteredCompanies, isLoading, total, perPage };
+};
 
-export default useGetCompanies 
+export default useGetCompanies;
