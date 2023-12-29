@@ -1,28 +1,26 @@
 import { onMounted, ref, computed } from "vue";
 import axios from "axios";
 
-const useGetCompanies = (page = 1) => {
-	const companies = ref([]);
-	const searchTerm = ref("");
-	const isLoading = ref(false);
-	const total = ref(0);
-	const perPage = ref(0);
-
+const useGetCompanies = () => {
+	let companies = ref([]);
+	let searchTerm = ref("");
+	let isLoading = ref(false);
+	let paginationCount = ref(1);
 	let bePlangs = ref([]);
-
 	let beFrameworks = ref([]);
-
 	let feLang = ref([]);
+	let currentPage = ref(1);
 
-	const fetchData = async () => {
+	const fetchData = async (page = 1) => {
 		try {
 			const response = await axios.get(
 				`${process.env.VUE_APP_ROOT_API}/api/company/stack/all?page=${page}`
 			);
 			companies.value = response.data;
 			isLoading.value = true;
-			total.value = response.data.meta.total;
-			perPage.value = response.data.meta.per_page;
+			paginationCount.value = Math.ceil(
+				response.data.meta.total / response.data.meta.per_page
+			);
 		} catch (err) {
 			console.error("Error fetching data:", err.message);
 			companies.value = [];
@@ -75,7 +73,15 @@ const useGetCompanies = (page = 1) => {
 		}
 	});
 
-	return { companies, searchTerm, fetchData, filteredCompanies, isLoading, total, perPage };
+	return {
+		companies,
+		searchTerm,
+		fetchData,
+		filteredCompanies,
+		isLoading,
+		paginationCount,
+		currentPage,
+	};
 };
 
 export default useGetCompanies;
