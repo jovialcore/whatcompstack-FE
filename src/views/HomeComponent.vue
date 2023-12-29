@@ -30,7 +30,7 @@
 		<PaginationComponent
 			@pageChange="handlePageChange"
 			:paginationCount="paginationCount"
-			v-if="isLoading"
+			v-show="!isLoading"
 		/>
 	</div>
 </template>
@@ -51,24 +51,24 @@
 				companies,
 				searchTerm,
 				filteredCompanies,
-				isLoading,
 				paginationCount,
 				fetchData,
 				currentPage,
+				isLoading,
 			} = useGetCompanies();
 
 			const handlePageChange = (newPage) => {
 				currentPage.value = newPage;
-				fetchData(newPage);
+				fetchData();
 			};
 
 			return {
 				companies,
 				searchTerm,
 				filteredCompanies,
-				isLoading,
 				paginationCount,
 				handlePageChange,
+				isLoading,
 			};
 		},
 	};
