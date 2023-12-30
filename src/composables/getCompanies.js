@@ -9,6 +9,7 @@ const useGetCompanies = () => {
 	let bePlangs = ref([]);
 	let beFrameworks = ref([]);
 	let feLang = ref([]);
+	let mobileLang = ref([]);
 	let currentPage = ref(1);
 	let isLoading = ref(true);
 
@@ -70,6 +71,14 @@ const useGetCompanies = () => {
 				}
 
 				if (feLang.value.some((key) => key.toLowerCase().includes(term))) {
+					return true;
+				}
+
+				if (item.stack_mobile.length > 0) {
+					mobileLang.value = item.stack_mobile.map((obj) => Object.keys(obj)[0]);
+				}
+
+				if (mobileLang.value.some((key) => key.toLowerCase().includes(term))) {
 					return true;
 				}
 
