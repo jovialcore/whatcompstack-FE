@@ -81,6 +81,7 @@ const useGetCompanies = () => {
 				if (mobileLang.value.some((key) => key.toLowerCase().includes(term))) {
 					return true;
 				}
+			
 
 				return false;
 			});

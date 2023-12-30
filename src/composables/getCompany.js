@@ -26,6 +26,7 @@ const getCompany = (id) => {
 			be_framework.value = getStacks(company.value.stack_be_framework);
 
 			mobile_stacks.value = getStacks(company.value.stack_mobile);
+			
 		} catch (err) {
 			company.value = null;
 		}
