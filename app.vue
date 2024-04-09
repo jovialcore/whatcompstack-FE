@@ -1,6 +1,6 @@
 
 <template>
   <div>
-    <Feel />
+    <Feel jovial="stinghere"/>
   </div>
 </template>
