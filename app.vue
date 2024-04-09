@@ -1,6 +1,6 @@
 
 <template>
   <div>
-    <Feel jovial="stinghere"/>
+    <Feel jovial="nuxt"/>
   </div>
 </template>
