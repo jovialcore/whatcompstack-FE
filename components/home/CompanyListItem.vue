@@ -60,9 +60,8 @@
 </template>
 
 <script>
-	import getStacks from "@/composables/getStacks";
-	import { useStore } from "vuex";
-	import { useRouter } from "vue-router";
+
+
 
 	export default {
 		props: ["company"],

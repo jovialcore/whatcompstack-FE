@@ -36,15 +36,8 @@
 </template>
 <script>
 
-	import useGetCompanies from "@/composables/getCompanies";``
-	import PaginationComponent from "@/components/Pagination.vue";
-
 	export default {
 		name: "HomeComponent",
-		components: {
-			CompanyListItem,
-			PaginationComponent,
-		},
 		setup() {
 			const {
 				companies,
@@ -54,7 +47,7 @@
 				fetchData,
 				currentPage,
 				isLoading,
-			} = useGetCompanies();
+			} = getCompanies();
 
 			const handlePageChange = (newPage) => {
 				currentPage.value = newPage;
