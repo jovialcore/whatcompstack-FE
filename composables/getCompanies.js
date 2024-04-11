@@ -15,10 +15,11 @@ const useGetCompanies = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await axios.get(
+			const response = await useFetch(
 				`${process.env.VUE_APP_ROOT_API}/api/company/stack/all`
 			);
 			allCompanies.value = response.data;
+			console.log(process.env.VUE_APP_ROOT_API)
 			paginateData();
 			isLoading.value = false;
 		} catch (err) {
@@ -35,9 +36,6 @@ const useGetCompanies = () => {
 		paginationCount.value = Math.ceil(allCompanies.value.data.length / perPage);
 	};
 
-	onMounted(() => {
-		fetchData();
-	});
 
 	const filteredCompanies = computed(() => {
 		const term = searchTerm.value.toLocaleLowerCase();

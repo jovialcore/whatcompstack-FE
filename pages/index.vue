@@ -34,10 +34,9 @@
 		/>
 	</div>
 </template>
-<script>
+<script >
 
 	export default {
-		name: "HomeComponent",
 		setup() {
 			const {
 				companies,
@@ -47,12 +46,17 @@
 				fetchData,
 				currentPage,
 				isLoading,
+            
 			} = getCompanies();
+
+            // const {sayAlert }= alerter();
 
 			const handlePageChange = (newPage) => {
 				currentPage.value = newPage;
 				fetchData();
 			};
+
+            console.log(sayAlert())
 
 			return {
 				companies,
@@ -61,6 +65,7 @@
 				paginationCount,
 				handlePageChange,
 				isLoading,
+                fetchData
 			};
 		},
 	};
