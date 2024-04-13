@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: true},
 
   css: [
     '~/assets/main.scss',
@@ -9,3 +9,4 @@ export default defineNuxtConfig({
     '~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'
   ]
 })
+

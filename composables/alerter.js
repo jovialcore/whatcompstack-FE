@@ -1,4 +1,4 @@
-export const sayAlert = (msg = "devault") => {
+export const sayyAlert = () => {
 
     console.log('hellow');
 

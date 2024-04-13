@@ -15,9 +15,7 @@ const useGetCompanies = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await useFetch(
-				`${process.env.VUE_APP_ROOT_API}/api/company/stack/all`
-			);
+			const response = await useFetch(() => 'http://127.0.0.1:8000/api/company/stack/all');
 			allCompanies.value = response.data;
 			console.log(process.env.VUE_APP_ROOT_API)
 			paginateData();
@@ -27,6 +25,9 @@ const useGetCompanies = () => {
 			companies.value = [];
 		}
 	};
+
+
+
 
 	const paginateData = () => {
 		const perPage = 15;
@@ -79,7 +80,7 @@ const useGetCompanies = () => {
 				if (mobileLang.value.some((key) => key.toLowerCase().includes(term))) {
 					return true;
 				}
-			
+
 
 				return false;
 			});
