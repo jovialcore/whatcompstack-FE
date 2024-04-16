@@ -9,4 +9,3 @@ export default defineNuxtConfig({
     '~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'
   ]
 })
-

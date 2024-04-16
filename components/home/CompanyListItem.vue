@@ -4,7 +4,7 @@
             <div class="card-body my-0">
                 <div class="row justify-content-between" style="">
                     <div class="col-sm-9 col-8">
-                        <h4 class="card-title">{{ company.company }}</h4>
+                        <h4 class="card-title">{{ company.company }} ff</h4>
                         <p class="card-text">
                             <span><b>Backend:</b></span><span class="ms-1" v-for="stack_be in stacks_be"
                                 :key="stack_be">
@@ -17,17 +17,13 @@
                                 </span>
                             </span>
 
-                            <span v-if="stacks_mobile ">
-								<b> Mobile: </b>
-									<span
-										class="ms-1"
-										v-for="stack_mobile in stacks_mobile"
-										:key="stack_mobile"
-									>
-										{{ stack_mobile }}
-									</span>
-							</span>
-							<span v-else></span>
+                            <span v-if="stacks_mobile">
+                                <b> Mobile: </b>
+                                <span class="ms-1" v-for="stack_mobile in stacks_mobile" :key="stack_mobile">
+                                    {{ stack_mobile }}
+                                </span>
+                            </span>
+                            <span v-else></span>
                         </p>
                     </div>
                     <div class="col-sm-3 col-4" style="width: 100px; height: 100px">
@@ -35,8 +31,9 @@
                             style="border-radius: 50%; vertical-align: bottom" />
                     </div>
                 </div>
-                <button @click="navigateToCompany(company.id)" class="btn btn-outline-secondary mt-3">
-                    Learn More
+                <button class="btn btn-outline-secondary mt-3">
+
+                    <NuxtLink :to="company.company"> Learn More </NuxtLink>
                 </button>
             </div>
         </div>
@@ -55,7 +52,7 @@ export default {
         const stacks_be = getStacks(props.company.stack_be_plang);
         const stacks_fe = getStacks(props.company.stack_fe_framework);
         const stacks_mobile = getStacks(props.company.stack_mobile);
-        
+
         return {
             stacks_be,
             stacks_fe,

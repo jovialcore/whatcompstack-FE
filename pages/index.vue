@@ -12,7 +12,9 @@
         </div>
     </div>
 
+
     <div class="container-xxl flex-grow-1 container-p-y">
+
         <div class="row mb-5">
             <HomeCompanyListItem v-for="company in filteredCompanies" :key="company.id" :company="company" />
         </div>
@@ -20,6 +22,8 @@
     </div>
 </template>
 <script setup>
+
+
 
 let searchTerm = ref("");
 let paginationCount = ref(1);
