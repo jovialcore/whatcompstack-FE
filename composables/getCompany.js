@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import axios from "axios";
+
 import getStacks from "@/composables/getStacks";
 
 const getCompany = (id) => {
