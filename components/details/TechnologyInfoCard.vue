@@ -1,18 +1,14 @@
 <template>
- <div class="technology-card col-lg-5" :class="classObject">
-    <span class="stack-name">{{ name }}</span>
-    <DetailsTechnologyCard v-for="(item, idx) in title" :key="idx" :stacks="stacks[idx]" :title="item" />
- </div>
+    <div class="technology-card col-lg-5" :class="classObject">
+        <span class="stack-name">{{ name }}</span>
+        <DetailsTechnologyCard v-for="(item, idx) in title" :key="idx" :stacks="stacks[idx]" :title="item" />
+    </div>
 </template>
 
 <script>
 
 export default {
     props: ['name', 'stacks', 'title', 'classObject'],
-    name: 'TechnologyInfoCard',
-    components: {
-        TechnologyCard,
-    },
 }
 </script>
 
@@ -44,5 +40,4 @@ export default {
     text-transform: uppercase;
     text-align: left;
 }
-
 </style>

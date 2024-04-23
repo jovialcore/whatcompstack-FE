@@ -4,7 +4,7 @@
             <NuxtLink to="/" class="text-black">
                 Home
             </NuxtLink>
-            <font-awesome-icon icon="fa-solid fa-angle-right" />
+          
             <span style="color: #17A1FA; cursor: pointer;">{{ company.company.charAt(0).toUpperCase() }}{{
                 company.company.slice(1).toLowerCase() }}</span>
         </div>
@@ -24,7 +24,7 @@
                     </div>
                     <a :href="company.company_url" target="_blank" class="company-link">
                         <span>Visit company website</span>
-                        <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" style="color: white;" />
+                        <!-- <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" style="color: white;" /> -->
                     </a>
                 </div>
             </div>
@@ -39,17 +39,18 @@
 
                     <DetailsTechnologyInfoCard name="Frontend" :title="['Programming Language(s)', 'Framework']"
                         :stacks="[['JavaScript'], stack_fe]"
-                        :classObject="{ 'd-none': company.is_mobile_only || stack_fe.length === 0 }" />
+                        :classObject="{ 'd-none': company.is_mobile_only || stack_fe?.length === 0 }" />
 
 
                     <DetailsTechnologyInfoCard name="Mobile" :title="['Programming/Frameworks']"
-                        :stacks="[mobile_stacks]" :classObject="{ 'd-none': mobile_stacks.length === 0 }" />
+                        :stacks="[mobile_stacks]" :classObject="{ 'd-none': mobile_stacks?.length === 0 }" />
                 </div>
             </div>
         </div>
 
     </div>
 </template>
+
 
 <script setup>
 
@@ -60,16 +61,17 @@ const toggleShowLess = () => {
     showLess.value = !showLess.value;
 };
 
-const company = ref(null);
+let company = ref(null);
 
-const stack_be = ref([]);
-const stack_fe = ref([]);
-const be_framework = ref([]);
-const mobile_stacks = ref([]);
+let stack_be = ref([]);
+let stack_fe = ref([]);
+let be_framework = ref([]);
+let  mobile_stacks = ref([]);
 
 
 try {
-    const { data: detail } = await usefetch(() => `/api/company/stack/details/1`)
+    const { data: detail } = await useFetch(() => `http://127.0.0.1:8000/api/company/stack/details/1`)
+
     company.value = detail.value.data;
 
     stack_be.value = getStacks(company.value.stack_be_plang);

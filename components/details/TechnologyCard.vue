@@ -1,7 +1,7 @@
 <template>
     <div class="language">
         <span class="title text-start">{{ title }}</span>
-        <div v-if="stacks && stacks.length > 0" class="stacks">
+        <div v-if="stacks > 0" class="stacks">
             <DetailsStackCard v-for="stack in stacks" :key="stack" :stack="stack" />
         </div>
         <span class="not-available" v-else>We have no list at the moment</span>
@@ -9,14 +9,9 @@
 </template>
 
 <script>
-import StackCard from '@/components/details/StackCard.vue'
 
 export default {
     props: ['stacks', 'title'],
-    name: 'TechnologyCard',
-    components: {
-        StackCard
-    },
 }
 </script>
 

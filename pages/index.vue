@@ -23,8 +23,6 @@
 </template>
 <script setup>
 
-
-
 let searchTerm = ref("");
 let paginationCount = ref(1);
 let bePlangs = ref([]);
