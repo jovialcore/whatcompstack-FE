@@ -4,7 +4,7 @@
             <NuxtLink to="/" class="text-black">
                 Home
             </NuxtLink>
-          
+
             <span style="color: #17A1FA; cursor: pointer;">{{ company.company.charAt(0).toUpperCase() }}{{
                 company.company.slice(1).toLowerCase() }}</span>
         </div>
@@ -66,21 +66,15 @@ let company = ref(null);
 let stack_be = ref([]);
 let stack_fe = ref([]);
 let be_framework = ref([]);
-let  mobile_stacks = ref([]);
+let mobile_stacks = ref([]);
 
-const route  = useRoute()
+const route = useRoute()
 
 try {
-    const { data: detail } = await useFetch(() => `http://127.0.0.1:8000/api/company/stack/details/ ${route.query.id}`)
+    const { data: detail } = await useFetch(() => `http://127.0.0.1:8000/api/company/stack/details/${route.query.id}`)
 
     company.value = detail.value.data;
 
-    console.log(stack_be.value)
-
-    console.log(route.params)
-
-
-    console.log(route.query.id)
 
     stack_be.value = getStacks(company.value.stack_be_plang);
 
@@ -90,7 +84,7 @@ try {
 
     mobile_stacks.value = getStacks(company.value.stack_mobile);
 
-
+    console.log(stack_be.value)
 
 
 } catch (err) {

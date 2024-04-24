@@ -1,14 +1,14 @@
 <template>
     <div class="language">
         <span class="title text-start">{{ title }}</span>
-        <div v-if="stacks > 0" class="stacks">
+        <div v-if="stacks?.length > 0" class="stacks">
 
             <div class="stack-card" v-for="stack in stacks" :key="stack">
                 <span>{{ stack }} </span>
             </div>
 
         </div>
-        <span class="not-available" v-else>We have no list at the moment</span>
+        <span class="not-available" v-else>We have no list at the moment fjfj</span>
     </div>
 </template>
 
