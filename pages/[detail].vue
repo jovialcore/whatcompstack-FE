@@ -68,11 +68,19 @@ let stack_fe = ref([]);
 let be_framework = ref([]);
 let  mobile_stacks = ref([]);
 
+const route  = useRoute()
 
 try {
-    const { data: detail } = await useFetch(() => `http://127.0.0.1:8000/api/company/stack/details/1`)
+    const { data: detail } = await useFetch(() => `http://127.0.0.1:8000/api/company/stack/details/ ${route.query.id}`)
 
     company.value = detail.value.data;
+
+    console.log(stack_be.value)
+
+    console.log(route.params)
+
+
+    console.log(route.query.id)
 
     stack_be.value = getStacks(company.value.stack_be_plang);
 
@@ -81,6 +89,9 @@ try {
     be_framework.value = getStacks(company.value.stack_be_framework);
 
     mobile_stacks.value = getStacks(company.value.stack_mobile);
+
+
+
 
 } catch (err) {
     company.value = null;

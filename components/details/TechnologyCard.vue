@@ -2,7 +2,11 @@
     <div class="language">
         <span class="title text-start">{{ title }}</span>
         <div v-if="stacks > 0" class="stacks">
-            <DetailsStackCard v-for="stack in stacks" :key="stack" :stack="stack" />
+
+            <div class="stack-card" v-for="stack in stacks" :key="stack">
+                <span>{{ stack }} </span>
+            </div>
+
         </div>
         <span class="not-available" v-else>We have no list at the moment</span>
     </div>
@@ -39,5 +43,24 @@ export default {
     font-size: 12px;
     font-style: italic;
     color: #425466;
+}
+
+
+.stack-card {
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: #E4ECF7;
+}
+
+.stack-card span {
+    color: #505780;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    text-transform: uppercase;
 }
 </style>

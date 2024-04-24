@@ -2,6 +2,7 @@
     <div class="technology-card col-lg-5" :class="classObject">
         <span class="stack-name">{{ name }}</span>
         <DetailsTechnologyCard v-for="(item, idx) in title" :key="idx" :stacks="stacks[idx]" :title="item" />
+
     </div>
 </template>
 

@@ -33,7 +33,7 @@
                 </div>
                 <button class="btn btn-outline-secondary mt-3">
 
-                    <NuxtLink :to="company.company"> Learn More </NuxtLink>
+                    <NuxtLink :to="{path: company.company, query : {id : company.id}}"> Learn More </NuxtLink>
                 </button>
             </div>
         </div>
