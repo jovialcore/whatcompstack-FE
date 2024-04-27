@@ -1,7 +1,7 @@
 <template>
-    <div class="technology-card col" style="border: 3px solid blue;" :class="classObject">
+    <div class="technology-card col-lg-5" :class="classObject">
         <span class="stack-name">{{ name }}</span>
-        
+
         <DetailsTechnologyCard v-for="(item, idx) in title" :key="idx" :stacks="stacks[idx]" :title="item" />
 
     </div>
@@ -16,13 +16,18 @@ export default {
 
 <style>
 .technology-card {
- 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
     padding: 24px;
+    min-height: 222px;
+    gap: 24px;
     border-radius: 15px;
     background-color: #FFFFFF;
 }
-
-/* @media (min-width: 1024px) {
+/* 
+@media (min-width: 1024px) {
     .technology-card {
         width: 50%;
     }

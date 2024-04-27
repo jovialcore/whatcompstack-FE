@@ -4,7 +4,7 @@
             <div class="card-body my-0">
                 <div class="row justify-content-between" style="">
                     <div class="col-sm-9 col-8">
-                        <h4 class="card-title">{{ company.company }} ff</h4>
+                        <h4 class="card-title">{{ company.company }} </h4>
                         <p class="card-text">
                             <span><b>Backend:</b></span><span class="ms-1" v-for="stack_be in stacks_be"
                                 :key="stack_be">
