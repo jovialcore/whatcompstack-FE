@@ -13,7 +13,7 @@
     </div>
 
 
-    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y ">
 
         <div class="row mb-5">
             <HomeCompanyListItem v-for="company in filteredCompanies" :key="company.id" :company="company" />
@@ -48,7 +48,6 @@ const filteredCompanies = computed(() => {
     const term = searchTerm.value.toLocaleLowerCase();
 
     if (searchTerm.value) {
-        console.log('i was outputed')
         return allCompanies.value.data.filter((item) => {
 
             if (item.company.toLowerCase().includes(term)) {

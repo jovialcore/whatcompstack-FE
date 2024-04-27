@@ -1,15 +1,9 @@
 <template>
-    <div class="container-fluid">
-        <div class="d-flex justify-content-start align-items-center gap-2 ms-md-5 mb-3 mb-md-5">
-            <NuxtLink to="/" class="text-black">
-                Home
-            </NuxtLink>
+    <div class="container-fluid text-center">
+        <div class="row  g-0 justify-content-center justify-content-md-evenly ">
 
-            <span style="color: #17A1FA; cursor: pointer;">{{ company.company.charAt(0).toUpperCase() }}{{
-                company.company.slice(1).toLowerCase() }}</span>
-        </div>
-        <div class="row g-0 justify-content-center justify-content-md-evenly">
-            <div class="col-12 col-md-5 col-lg-3">
+            <!-- image start -->
+            <div class="col-12 col-md-5 col-lg-3" style="border: 3px solid green;">
                 <div class="card company-card">
                     <img :src="company.logo" class="card-img-top h-50 mx-100" alt="">
                     <div class="company-card-body w-100">
@@ -28,11 +22,13 @@
                     </a>
                 </div>
             </div>
+
+            <!-- image end -->
+
+
             <div class="col-12 col-md-5 col-lg-7">
 
-                <div class="row flex-column flex-lg-row mt-4 mt-md-0 info-card px-3">
-
-
+                <div class="row flex-column flex-lg-row  mt-4 mt-md-0 info-card px-3" style="border: 3px solid black;">
                     <DetailsTechnologyInfoCard name="Backend" :title="['Programming Language(s)', 'Framework']"
                         :stacks="[stack_be, be_framework]" />
 
@@ -46,8 +42,8 @@
                         :stacks="[mobile_stacks]" :classObject="{ 'd-none': mobile_stacks?.length === 0 }" />
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </template>
 
@@ -168,7 +164,7 @@ try {
 }
 
 .info-card {
-    gap: 40px;
+    gap: 10px;
 }
 
 @media (max-width: 768px) {
