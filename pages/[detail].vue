@@ -2,6 +2,17 @@
     <div class="container-fluid">
 
 
+        <div class="d-flex justify-content-start align-items-center gap-2 ms-md-5 mb-3 mb-md-5">
+            <router-link to="/" class="text-black">
+                Home
+            </router-link>
+
+            <font-awesome-icon icon="fa-solid fa-angle-right" />
+
+            <span style="color: #17A1FA; cursor: pointer;">{{ company.company.charAt(0).toUpperCase() }}{{company.company.slice(1).toLowerCase() }}</span>
+        </div>
+
+
         <div class="row  g-0 justify-content-center justify-content-md-evenly ">
             <!-- image start -->
             <div class="col-12 col-md-5 col-lg-3">
@@ -93,76 +104,84 @@ try {
 
 <style>
 .company-card {
-	border-radius: 20px;
-	border: 0.2px solid #3A3A3A;
+    border-radius: 20px;
+    border: 0.2px solid #3A3A3A;
 }
+
 .company-card-body {
-	padding: 24px 16px;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	align-self: stretch;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: stretch;
 }
+
 .company-name {
-	color: #000;
-	text-align: center;
-	
-	font-size: 31px;
-	font-style: normal;
-	font-weight: 900;
-	line-height: normal;
+    color: #000;
+    text-align: center;
+
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
 }
+
 .company-info {
-	color: #3A3A3A;
-	text-align: center;
-	
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 23px;
-	letter-spacing: 0.5px;
-	margin-right: 10px;
+    color: #3A3A3A;
+    text-align: center;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
 }
+
 .company-link-container {
-	display: flex;
-	height: 48px;
-	padding: 10px;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	align-self: stretch;
-	border-radius: 8px;
-	background: #424B5A;
+    display: flex;
+    height: 48px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: #424B5A;
 }
+
 .company-link {
-	display: flex;
-	border-radius: 8px;
-	background: #424B5A;
-	padding: 10px;
-	margin: 16px;
-	align-items: center;
-	gap: 10px;
-	justify-content: center;
-	align-self: stretch;
-	cursor: pointer;
+    display: flex;
+    border-radius: 8px;
+    background: #424B5A;
+    padding: 10px;
+    margin: 16px;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    align-self: stretch;
+    cursor: pointer;
 }
+
 .company-link span {
-	color: #FFF;
-	text-align: center;
-	
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: 16px;
-	letter-spacing: 0.5px;
-	text-transform: capitalize;
+    color: #FFF;
+    text-align: center;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
 }
+
 .info-card {
-	gap: 40px;
+    gap: 40px;
 }
+
 @media (max-width: 768px) {
-	.info-card {
-		gap: 20px;
-	}
+    .info-card {
+        gap: 20px;
+    }
 }
 </style>
