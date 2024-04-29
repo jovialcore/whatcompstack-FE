@@ -30,7 +30,7 @@
                     </div>
                     <a :href="company.company_url" target="_blank" class="company-link">
                         <span>Visit company website</span>
-                        <!-- <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" style="color: white;" /> -->
+                        <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" style="color: white;" />
                     </a>
                 </div>
             </div>
@@ -79,7 +79,7 @@ let mobile_stacks = ref([]);
 const route = useRoute()
 
 try {
-    const { data: detail } = await useFetch(() => `http://127.0.0.1:8000/api/company/stack/details/${route.query.id}`)
+    const { data: detail } = await useFetch(() => `https://admin.whatcompanystack.com/api/company/stack/details/${route.query.id}`)
 
     company.value = detail.value.data;
 

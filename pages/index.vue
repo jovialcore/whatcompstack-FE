@@ -12,13 +12,13 @@
         </div>
     </div>
 
-
     <div class="container-xxl flex-grow-1 container-p-y ">
 
         <div class="row mb-5">
             <HomeCompanyListItem v-for="company in filteredCompanies" :key="company.id" :company="company" />
         </div>
-        <!-- <PaginationComponent :paginationCount="paginationCount" v-show="!isLoading" /> -->
+
+        <Pagination :totalPages="expectedNoOfPages" @get-paginated="getPaginatedData" />
     </div>
 </template>
 <script setup>
@@ -31,18 +31,34 @@ let feLang = ref([]);
 let mobileLang = ref([]);
 let currentPage = ref(1);
 
+let pageEnd = ref('all');
 
-const paginateData = () => {
-    const perPage = 15;
-    const startIndex = (currentPage.value - 1) * perPage;
-    const endIndex = startIndex + perPage;
-    companies.value = allCompanies.value.data.slice(startIndex, endIndex);
-    paginationCount.value = Math.ceil(allCompanies.value.data.length / perPage);
-};
+const { data: allCompanies, pending, error, refresh } = await useFetch(() => 'https://admin.whatcompanystack.com/api/company/stack/' + pageEnd.value);
 
 
-const { data: allCompanies, pending, error, refresh } = await useFetch(() => 'http://127.0.0.1:8000/api/company/stack/all');
+// good use case of computed property
 
+const expectedNoOfPages = computed(() => {
+
+    if (allCompanies.value.meta.total > allCompanies.value.meta.per_page) {
+
+        const remainder = allCompanies.value.meta.total % allCompanies.value.meta.per_page
+
+        if (remainder === 0) {
+            return allCompanies.value.meta.total / allCompanies.value.meta.per_page
+
+        } else {
+            return Math.ceil(allCompanies.value.meta.total / allCompanies.value.meta.per_page)
+        }
+
+    } 
+
+})
+
+const getPaginatedData = (pageNumber) => {
+
+    pageEnd.value = 'all?page=' + pageNumber
+}
 
 const filteredCompanies = computed(() => {
     const term = searchTerm.value.toLocaleLowerCase();

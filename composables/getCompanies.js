@@ -15,7 +15,9 @@ const useGetCompanies = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await useFetch(() => 'http://127.0.0.1:8000/api/company/stack/all');
+			const response = await useFetch(() => `${process.env.VUE_APP_ROOT_API}http://127.0.0.1:8000/api/company/stack/all`);
+
+
 			allCompanies.value = response.data;
 			console.log(process.env.VUE_APP_ROOT_API)
 			paginateData();

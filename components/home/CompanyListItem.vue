@@ -31,10 +31,11 @@
                             style="border-radius: 50%; vertical-align: bottom" />
                     </div>
                 </div>
-                <button class="btn btn-outline-secondary mt-3">
+           
 
-                    <NuxtLink :to="{path: company.company, query : {id : company.id}}"> Learn More </NuxtLink>
-                </button>
+                    <NuxtLink :to="{ path: company.company, query: { id: company.id } }" class="btn btn-outline-secondary mt-3"> Learn More
+                    </NuxtLink>
+            
             </div>
         </div>
     </div>
@@ -66,5 +67,15 @@ export default {
 <style>
 .card-title {
     font-style: normal !important;
+}
+
+.wcs-link {
+    color: blue;
+    text-decoration: none;
+}
+
+.wcs-link:hover {
+  
+    color: white;
 }
 </style>

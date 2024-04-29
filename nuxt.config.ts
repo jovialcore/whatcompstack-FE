@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '~/assets/main.css',
     '~/assets/vendor/css/theme-default.css',
     '~/assets/vendor/css/core.css',
+    '~/assets/vendor/fonts/boxicons.css',
 
   
    
