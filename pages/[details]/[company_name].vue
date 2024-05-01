@@ -79,7 +79,7 @@ let mobile_stacks = ref([]);
 const route = useRoute()
 
 try {
-    const { data: detail } = await useFetch(() => `https://admin.whatcompanystack.com/api/company/stack/details/${route.query.id}`)
+    const { data: detail } = await useFetch(() => `http://127.0.0.1:8000/api/company/stack/details/${route.params.company_name}`)
 
     company.value = detail.value.data;
 

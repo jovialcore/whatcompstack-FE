@@ -31,11 +31,11 @@
                             style="border-radius: 50%; vertical-align: bottom" />
                     </div>
                 </div>
-           
 
-                    <NuxtLink :to="{ path: company.company, query: { id: company.id } }" class="btn btn-outline-secondary mt-3"> Learn More
-                    </NuxtLink>
-            
+
+                <NuxtLink :to="{ path: '/details/' +company.source_slug }" class="btn btn-outline-secondary mt-3"> Learn More
+                </NuxtLink>
+
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@ export default {
 }
 
 .wcs-link:hover {
-  
+
     color: white;
 }
 </style>
