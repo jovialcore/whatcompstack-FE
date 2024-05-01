@@ -31,7 +31,7 @@ let feLang = ref([]);
 let mobileLang = ref([]);
 let pageEnd = ref('all');
 
-const { data: allCompanies, pending, error, refresh } = await useFetch(() => 'http://127.0.0.1:8000/api/company/stack/' + pageEnd.value);
+const { data: allCompanies, pending, error, refresh } = await useFetch(() => 'https://admin.whatcompanystack.com/api/company/stack/' + pageEnd.value);
 
 
 // good use case of computed property
