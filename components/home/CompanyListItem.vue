@@ -33,7 +33,8 @@
                 </div>
 
 
-                <NuxtLink :to="{ path: '/details/' +company.source_slug }" class="btn btn-outline-secondary mt-3"> Learn More
+                <NuxtLink :to="{ path: '/details/' + companyName }" class="btn btn-outline-secondary mt-3"> Learn
+                    More
                 </NuxtLink>
 
             </div>
@@ -54,10 +55,14 @@ export default {
         const stacks_fe = getStacks(props.company.stack_fe_framework);
         const stacks_mobile = getStacks(props.company.stack_mobile);
 
+        const companyName = computed(() => {
+            return props.company.company.toLowerCase();
+        })
         return {
             stacks_be,
             stacks_fe,
             stacks_mobile,
+            companyName
             //navigateToCompany,
         };
     },

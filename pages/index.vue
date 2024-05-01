@@ -24,13 +24,11 @@
 <script setup>
 
 let searchTerm = ref("");
-let paginationCount = ref(1);
+
 let bePlangs = ref([]);
 let beFrameworks = ref([]);
 let feLang = ref([]);
 let mobileLang = ref([]);
-let currentPage = ref(1);
-
 let pageEnd = ref('all');
 
 const { data: allCompanies, pending, error, refresh } = await useFetch(() => 'http://127.0.0.1:8000/api/company/stack/' + pageEnd.value);
@@ -43,14 +41,9 @@ const expectedNoOfPages = computed(() => {
 
     if (allCompanies.value.meta.total > allCompanies.value.meta.per_page) {
 
-        const remainder = allCompanies.value.meta.total % allCompanies.value.meta.per_page
-
-        if (remainder === 0) {
-            return allCompanies.value.meta.total / allCompanies.value.meta.per_page
-
-        } else {
+    
             return Math.ceil(allCompanies.value.meta.total / allCompanies.value.meta.per_page)
-        }
+        
 
     } 
 })
