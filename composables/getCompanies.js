@@ -1,6 +1,5 @@
 import { onMounted, ref, computed } from "vue";
 
-
 const useGetCompanies = () => {
 	let allCompanies = ref([]); // stores all companies
 	let companies = ref([]);
@@ -15,11 +14,12 @@ const useGetCompanies = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await useFetch(() => `${process.env.VUE_APP_ROOT_API}http://127.0.0.1:8000/api/company/stack/all`);
-
+			const response = await useFetch(
+				() =>
+					`${process.env.VUE_APP_ROOT_API}http://127.0.0.1:8000/api/company/stack/all`
+			);
 
 			allCompanies.value = response.data;
-			console.log(process.env.VUE_APP_ROOT_API)
 			paginateData();
 			isLoading.value = false;
 		} catch (err) {
@@ -28,9 +28,6 @@ const useGetCompanies = () => {
 		}
 	};
 
-
-
-
 	const paginateData = () => {
 		const perPage = 15;
 		const startIndex = (currentPage.value - 1) * perPage;
@@ -38,7 +35,6 @@ const useGetCompanies = () => {
 		companies.value = allCompanies.value.data.slice(startIndex, endIndex);
 		paginationCount.value = Math.ceil(allCompanies.value.data.length / perPage);
 	};
-
 
 	const filteredCompanies = computed(() => {
 		const term = searchTerm.value.toLocaleLowerCase();
@@ -82,7 +78,6 @@ const useGetCompanies = () => {
 				if (mobileLang.value.some((key) => key.toLowerCase().includes(term))) {
 					return true;
 				}
-
 
 				return false;
 			});

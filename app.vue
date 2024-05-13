@@ -1,21 +1,17 @@
 <template>
-  <div class="layout-wrapper layout-content-navbar layout-without-menu">
-    <div class="layout-container">
-      <div class="layout-page">
-        <div class="content-wrapper">
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<Header />
 
-          <Header />
+					<NuxtLoadingIndicator />
 
-          <NuxtLoadingIndicator />
-          
-          <NuxtPage />
+					<NuxtPage />
 
-          
-
-          <Footer />
-
-        </div>
-      </div>
-    </div>
-  </div>
+					<Footer />
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
