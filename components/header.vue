@@ -18,9 +18,19 @@
       <div class="justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
+            <NuxtLink :to="{ path: 'community/login' }" class="btn btn-outline-secondary mt-3">
+              Sign Up
+            </NuxtLink>
+
+          </li>
+
+
+          <li class="nav-item">
             <a href="https://github.com/jovialcore/whatcompstack-BE?tab=readme-ov-file#-what-company-stack"
               target="_blank" class="nav-link">🌟 us
               on Github </a>
+
+
           </li>
         </ul>
       </div>
