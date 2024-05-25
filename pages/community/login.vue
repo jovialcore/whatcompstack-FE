@@ -1,15 +1,27 @@
 <template>
-	<div class="container-xxl flex-grow-1 container-p-y">
-		<div class="row mb-5">
-			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">Example label</label>
-				<input type="text" class="form-control" id="formGroupExampleInput"
-					placeholder="Example input placeholder">
-			</div>
-			<div class="mb-3">
-				<label for="formGroupExampleInput2" class="form-label">Another label</label>
-				<input type="text" class="form-control" id="formGroupExampleInput2"
-					placeholder="Another input placeholder">
+	<div class="container-xxl flex-grow-1 container-p-y ">
+		<div class="row align-items-center justify-content-center" >
+			<div class="col-6 rounded bg-dark p-3">
+				<div class="mb-3">
+					<label for="formGroupExampleInput" class="form-label">Name</label>
+					<input type="text" class="form-control" id="formGroupExampleInput"
+						placeholder="Example input placeholder">
+				</div>
+				<div class="mb-3">
+					<label for="formGroupExampleInput" class="form-label">Email</label>
+					<input type="text" class="form-control" id="formGroupExampleInput"
+						placeholder="Example input placeholder">
+				</div>
+				<div class="mb-3">
+					<label for="formGroupExampleInput2" class="form-label">Password</label>
+					<input type="text" class="form-control" id="formGroupExampleInput2"
+						placeholder="Another input placeholder">
+				</div>
+				<div class="mb-3">
+					<label for="formGroupExampleInput2" class="form-label">Linkedin Url</label>
+					<input type="text" class="form-control" id="formGroupExampleInput2"
+						placeholder="Another input placeholder">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -29,3 +41,10 @@ const login = () => {
 	}
 };
 </script>
+
+<style scoped>
+.row {
+
+	height: 100%;
+}
+</style>
