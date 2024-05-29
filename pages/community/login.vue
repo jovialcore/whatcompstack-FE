@@ -1,28 +1,21 @@
 <template>
 	<div class="container-xxl flex-grow-1 container-p-y ">
 		<div class="row align-items-center justify-content-center">
-			<div class="col-6 rounded bg-dark p-3">
+
+			<div class="col-6 rounded bg-dark p-3 text-white ">
+				<p> Welcome to What-Company-Stack Community </p>
 				<form @submit.prevent="handleLogin">
 					<div class="mb-3">
-						<label for="formGroupExampleInput" class="form-label">Name</label>
-						<input type="text" class="form-control" id="formGroupExampleInput"
-							placeholder="Example input placeholder">
+						<label class="form-label">Email</label>
+						<input type="email" class="form-control" 
+							placeholder="Enter your email..." v-model="form.email">
 					</div>
 					<div class="mb-3">
-						<label for="formGroupExampleInput" class="form-label">Email</label>
-						<input type="text" class="form-control" id="formGroupExampleInput"
-							placeholder="Example input placeholder">
+						<label class="form-label">Password</label>
+						<input type="password" class="form-control"
+							placeholder="Enter your password..." v-model="form.password">
 					</div>
-					<div class="mb-3">
-						<label for="formGroupExampleInput2" class="form-label">Password</label>
-						<input type="text" class="form-control" id="formGroupExampleInput2"
-							placeholder="Another input placeholder">
-					</div>
-					<div class="mb-3">
-						<label for="formGroupExampleInput2" class="form-label">Linkedin Url</label>
-						<input type="text" class="form-control" id="formGroupExampleInput2"
-							placeholder="Another input placeholder">
-					</div>
+					<button class="btn btn-success text-white" > Submit </button>
 				</form>
 			</div>
 		</div>
@@ -30,28 +23,21 @@
 </template>
 
 <script setup>
-const email = ref("");
-const password = ref("");
-const error = ref("");
+;
 
 const form = ref({
-	email: "jovialcore@gmail.com",
-	password: "jovialcore224",
-
+	email: "joviclore@gmail.com",
+	password: "jovialpPass2",
 })
 
-function handleLogin (param) { 
+async function handleLogin() {
 
- }
- 
-const login = () => {
-	if (email.value === "admin" && password.value === "password") {
-		// Redirect to dashboard or perform any other action upon successful login
-		alert("Login successful!");
-	} else {
-		error.value = "Invalid email or password";
-	}
-};
+	console.log(' I was severly hit');
+
+	await useFetch("http://127.0.0.1:8000/sanctum/csrf-cookie")
+
+}
+
 </script>
 
 <style scoped>
