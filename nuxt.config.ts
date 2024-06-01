@@ -9,4 +9,9 @@ export default defineNuxtConfig({
     '~/assets/vendor/fonts/boxicons.css',
     //  '~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'
   ]
+  ,
+  modules: [
+    // ...
+    '@pinia/nuxt',
+  ],
 })

@@ -28,30 +28,17 @@ const form = ref({
 	password: "60Leaves60@",
 })
 
+
+const auth = useAuthStore();
+
 async function handleLogin() {
 
+	const { error } = await auth.login(form.value);
 
-	await useFetch("http://127.0.0.1:8002/sanctum/csrf-cookie", {
-		credentials: "include"
-	})
-
-	const token = useCookie('XSRF-TOKEN');
-
-	await useFetch("http://127.0.0.1:8002/api/login", {
-
-		credentials: "include",
-		method: "POST",
-		body: form.value,
-		watch : false,
-		headers: {
-			accept: "application/json",
-			'X-XSRF-TOKEN': token.value,
-		}
-	})
-
+	console.log(error)
 }
-
 </script>
+
 
 <style scoped>
 .row {
