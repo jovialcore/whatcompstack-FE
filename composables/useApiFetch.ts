@@ -13,12 +13,12 @@ export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
   headers['Accept'] = 'application/json'
 
 
-  // because this api called is made on the server, there are information that we may not have yet 
+  // because this api called is made on the server. Use to ensure that the user data persist after page refresh 
   if (process.server) {
     headers = {
 
       ...headers,
-      ...useRequestHeaders(['cookie', 'referrer'])
+      ...useRequestHeaders(['referer', 'cookie'])
     }
   }
   return useFetch("http://127.0.0.1:8000/" + path, {
