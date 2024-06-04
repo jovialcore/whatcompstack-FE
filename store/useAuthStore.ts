@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 
+
 type User = {
     id: number
     name: string
@@ -8,27 +9,39 @@ type User = {
 
 type Credentials = {
     email: string,
-    password: string | number,
+    password: string,
 }
 
 export const useAuthStore = defineStore('auth', () => {
 
     const user = ref<User | null>(null)
 
+    const isLoggedIn = computed(() => !!user.value)
+
+
+    async function fetchUser() {
+        const { data, error } = await useApiFetch("api/community/member")
+        user.value = data.value as User
+        console.log(error)
+    }
+
+
     async function login(credentials: Credentials) {
 
         // fetch csrf-cookie
         await useApiFetch("sanctum/csrf-cookie");
 
-
-        await useApiFetch("api/login", {
+        const login = await useApiFetch("api/login", {
             method: 'POST',
             body: credentials
         })
+
+        await fetchUser();
+
+        return login;
     }
 
-
     // return the an object witht the properties and methods that we intend to expose
-    return { user, login }
+    return { user, login, isLoggedIn, fetchUser }
 
 });

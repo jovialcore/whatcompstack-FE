@@ -4,6 +4,13 @@
 
 			<div class="col-6 rounded bg-dark p-3 text-white ">
 				<p> Welcome to What-Company-Stack Community </p>
+
+				<div>
+					<p v-if="auth.loginMessage"> {{ auth.loginMessage }} </p>
+
+					<p v-else> Welcome 👋, {{ auth.user?.name }} </p>
+				</div>
+
 				<form @submit.prevent="handleLogin">
 					<div class="mb-3">
 						<label class="form-label">Email</label>
@@ -23,11 +30,12 @@
 
 <script setup>
 
+import { useAuthStore } from '~/store/useAuthStore'
+
 const form = ref({
 	email: "whatcompanystack@gmail.com",
 	password: "60Leaves60@",
 })
-
 
 const auth = useAuthStore();
 
