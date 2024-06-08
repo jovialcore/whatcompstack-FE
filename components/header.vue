@@ -76,9 +76,6 @@ const auth = useAuthStore();
 function handleLogOut() {
 
   auth.logout()
-
-  useCookie('XRSF-TOKEN').value = ''
-
 }
 
 
