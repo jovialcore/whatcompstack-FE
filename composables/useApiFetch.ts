@@ -18,7 +18,7 @@ export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
     headers = {
 
       ...headers,
-      ...useRequestHeaders(['referer', 'cookie'])
+      ...useRequestHeaders(["referer", "cookie"])
     }
   }
   return useFetch("http://127.0.0.1:8000/" + path, {

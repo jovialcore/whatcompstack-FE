@@ -41,7 +41,20 @@ export const useAuthStore = defineStore('auth', () => {
         return login;
     }
 
+
+    async function logout() {
+
+        const { data, error } = await useApiFetch('/community/member', {
+            method: "POST"
+        })
+        user.value = null
+        navigateTo("/")
+
+        console.log(error, data.value)
+    }
+
+
     // return the an object witht the properties and methods that we intend to expose
-    return { user, login, isLoggedIn, fetchUser }
+    return { user, login, isLoggedIn, fetchUser, logout }
 
 });
