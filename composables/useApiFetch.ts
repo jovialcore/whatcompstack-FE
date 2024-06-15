@@ -32,4 +32,9 @@ export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
       ...options?.headers
     }
   });
+
+
+  return  [
+    ''
+  ]
 }

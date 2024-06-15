@@ -17,14 +17,23 @@
 
       <div class="justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li v-if="auth.isLoggedIn" class="nav-item">
 
-            <button v-if="auth.isLoggedIn" @click="handleLogOut" class="btn btn-outline-grey mt-3">
+
+            <button @click="handleLogOut" class="btn btn-outline-grey mt-3">
               Log out
             </button>
 
-            <NuxtLink v-else to="/community/login" class="btn btn-outline-secondary mt-3">
-              Sign Up
+          </li>
+
+          <li v-else class="nav-item">
+
+            <NuxtLink to="/community/login" class="btn btn-outline-secondary mt-3 me-2">
+              Login
+            </NuxtLink>
+
+            <NuxtLink to="/community/auth/register" class="btn btn-outline-secondary outline-none mt-3">
+              Register
             </NuxtLink>
 
           </li>
@@ -33,7 +42,6 @@
             <a href="https://github.com/jovialcore/whatcompstack-BE?tab=readme-ov-file#-what-company-stack"
               target="_blank" class="nav-link">🌟 us
               on Github </a>
-
 
           </li>
         </ul>
