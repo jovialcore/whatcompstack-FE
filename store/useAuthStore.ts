@@ -14,6 +14,9 @@ type Credentials = {
 
 export const useAuthStore = defineStore('auth', () => {
 
+
+    const { $toast } = useNuxtApp();
+
     const user = ref<User | null>(null)
 
     const isLoggedIn = computed(() => !!user.value)
@@ -53,8 +56,18 @@ export const useAuthStore = defineStore('auth', () => {
         console.log(error, data.value)
     }
 
+    async function register(credentials) {
+        await useApiFetch("sanctum/csrf-cookie");
 
+        const register = await useApiFetch('api/community/signup', {
+
+            method: 'POST',
+            body: credentials
+        })
+
+        return register;
+    }
     // return the an object witht the properties and methods that we intend to expose
-    return { user, login, isLoggedIn, fetchUser, logout }
+    return { user, login, isLoggedIn, fetchUser, logout, register }
 
 });
