@@ -38,36 +38,41 @@ export const useAuthStore = defineStore('auth', () => {
             method: 'POST',
             body: credentials
         })
-
         await fetchUser();
 
         return login;
     }
 
-
     async function logout() {
 
-        const { data, error } = await useApiFetch('api/community/member/logout', {
+        await useApiFetch('api/community/member/logout', {
             method: "POST"
         })
         user.value = null
         navigateTo("/")
-
-        console.log(error, data.value)
     }
 
     async function register(credentials) {
+
         await useApiFetch("sanctum/csrf-cookie");
 
-        const register = await useApiFetch('api/community/signup', {
+        return await useApiFetch('api/community/signup', {
 
             method: 'POST',
             body: credentials
         })
+    }
 
-        return register;
+    async function verifyEmailUrl(emailRouteId, hash) {
+
+        await useApiFetch(`/email/verify/${emailRouteId}/${hash}`, {
+            method: 'POST',
+        })
+
+        
+
     }
     // return the an object witht the properties and methods that we intend to expose
-    return { user, login, isLoggedIn, fetchUser, logout, register }
+    return { user, login, isLoggedIn, fetchUser, logout, register, verifyEmailUrl }
 
 });

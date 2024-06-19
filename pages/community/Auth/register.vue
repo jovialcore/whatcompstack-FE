@@ -13,7 +13,7 @@
                         <form id="formAuthentication" @submit.prevent="handleRegister" class="mb-3">
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Username</label>
+                                <label for="name" class="form-label">Full Name</label>
                                 <input type="name" class="form-control" id="username" name="name" required
                                     placeholder="Enter your fullname" autofocus="name" v-model="form.name" />
                             </div>
@@ -71,8 +71,8 @@
                             </div>
 
                             <button class="btn btn-primary " :disabled="disableButton">
-                                
-                                <span v-if="!disableButton" >Sign up </span>
+
+                                <span v-if="!disableButton">Sign up </span>
                                 <span v-else> Signing you up .... </span>
 
                             </button>
