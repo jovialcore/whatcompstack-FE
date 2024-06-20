@@ -17,10 +17,32 @@
 
       <div class="justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav mb-2 mb-lg-0">
+          <li v-if="auth.isLoggedIn" class="nav-item">
+
+
+            <button @click="handleLogOut" class="btn btn-outline-grey mt-3">
+              Log out
+            </button>
+
+          </li>
+
+          <li v-else class="nav-item">
+
+            <NuxtLink to="/community/login" class="btn btn-outline-secondary mt-3 me-2">
+              Login
+            </NuxtLink>
+
+            <NuxtLink to="/community/auth/register" class="btn btn-outline-secondary outline-none mt-3">
+              Register
+            </NuxtLink>
+
+          </li>
+
           <li class="nav-item">
             <a href="https://github.com/jovialcore/whatcompstack-BE?tab=readme-ov-file#-what-company-stack"
               target="_blank" class="nav-link">🌟 us
               on Github </a>
+
           </li>
         </ul>
       </div>
@@ -52,8 +74,17 @@
 
 
 
-<script>
-export default {
-  name: 'HeaderComponent'
+<script setup>
+
+
+import { useAuthStore } from '~/store/useAuthStore';
+
+const auth = useAuthStore();
+
+function handleLogOut() {
+
+  auth.logout()
 }
+
+
 </script>

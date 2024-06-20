@@ -9,9 +9,18 @@
 
 					<NuxtPage />
 
+
+					<Toaster position="top-right" theme="dark" richColors />
+
 					<Footer />
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
+
+
+<script setup>
+
+
+</script>

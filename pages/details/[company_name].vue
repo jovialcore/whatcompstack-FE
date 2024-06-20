@@ -73,6 +73,9 @@
 </template>
 
 <script setup>
+
+
+
 	const showLess = ref(true);
 
 	const toggleShowLess = () => {
