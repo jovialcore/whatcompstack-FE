@@ -38,77 +38,58 @@
 	let beFrameworks = ref([]);
 	let feLang = ref([]);
 	let mobileLang = ref([]);
-	let pageEnd = ref("all");
+	const debouncedSearchTerm = ref('');
+	const searchTimeout = ref(null);
+	const filteredCompanies = ref([]);
+	const expectedNoOfPages = ref(0);
 
-	const {
-		data: allCompanies,
-		pending,
-		error,
-		refresh,
-	} = await useFetch(
-		() => "https://admin.whatcompanystack.com/api/company/stack/" + pageEnd.value
-	);
-
-	// good use case of computed property
-
-	// for pagination
-	const expectedNoOfPages = computed(() => {
-		if (allCompanies.value.meta.total > allCompanies.value.meta.per_page) {
-			return Math.ceil(allCompanies.value.meta.total / allCompanies.value.meta.per_page);
+	const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api/companies' : 'https://admin.whatcompanystack.com/api/companies';
+		
+	const getExpectedNoOfPages = (companiesMeta) => {
+		if (companiesMeta.total > companiesMeta.per_page) {
+			return Math.ceil(companiesMeta.total / companiesMeta.per_page);
 		}
-	});
-
-	const getPaginatedData = (pageNumber) => {
-		pageEnd.value = "all?page=" + pageNumber;
 	};
 
-	const filteredCompanies = computed(() => {
-		const term = searchTerm.value.toLocaleLowerCase();
+	const getCompanies = (url) =>  useFetch(() => url);
 
-		if (searchTerm.value) {
-			return allCompanies.value.data.filter((item) => {
-				if (item.company.toLowerCase().includes(term)) {
-					return true;
-				}
+    const { data: allCompanies, pending, error, refresh } = await getCompanies(baseUrl);
 
-				if (item.stack_be_plang.length > 0) {
-					bePlangs.value = item.stack_be_plang.map((obj) => Object.keys(obj)[0]);
-				}
+	filteredCompanies.value = allCompanies.value.data;
 
-				if (bePlangs.value.some((key) => key.toLowerCase().includes(term))) {
-					return true;
-				}
+	watch(searchTerm, (newTerm) => {
+        if (searchTimeout.value) {
+            clearTimeout(searchTimeout.value);
+            searchTimeout.value = null;
+        } 
+        searchTimeout.value = setTimeout(() => {
+            debouncedSearchTerm.value = newTerm;
+        }, 300);
+    });
 
-				if (item.stack_be_framework.length > 0) {
-					beFrameworks.value = item.stack_be_framework.map(
-						(obj) => Object.keys(obj)[0]
-					);
-				}
-
-				if (beFrameworks.value.some((key) => key.toLowerCase().includes(term))) {
-					return true;
-				}
-
-				if (item.stack_fe_framework.length > 0) {
-					feLang.value = item.stack_fe_framework.map((obj) => Object.keys(obj)[0]);
-				}
-
-				if (feLang.value.some((key) => key.toLowerCase().includes(term))) {
-					return true;
-				}
-
-				if (item.stack_mobile.length > 0) {
-					mobileLang.value = item.stack_mobile.map((obj) => Object.keys(obj)[0]);
-				}
-
-				if (mobileLang.value.some((key) => key.toLowerCase().includes(term))) {
-					return true;
-				}
-
-				return false;
-			});
-		} else {
-			return allCompanies.value.data;
+	watch(debouncedSearchTerm, async (newTerm) => {
+		if (!newTerm) {
+			filteredCompanies.value = allCompanies.value.data;
+			expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value.meta);
+			return;
 		}
+		const { data, error } = await getCompanies(`${baseUrl}?term=${newTerm}`);
+		if(!data.value){
+			filteredCompanies.value = [];
+			return;
+		}
+		filteredCompanies.value = data.value.data;
+		expectedNoOfPages.value = getExpectedNoOfPages(data.value.meta);
 	});
+
+	expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value.meta);
+
+    const getPaginatedData = async (pageNumber) => {
+        const pageEndValue = searchTerm.value ? `?term=${searchTerm.value}&page=${pageNumber}` : `?page=${pageNumber}`;
+		const { data: paginatedCompanies } = await getCompanies(`${baseUrl}${pageEndValue}`);
+		if(paginatedCompanies?.value?.data){
+			filteredCompanies.value = paginatedCompanies.value.data;
+			expectedNoOfPages.value = getExpectedNoOfPages(paginatedCompanies.value.meta);
+		}
+    };
 </script>
