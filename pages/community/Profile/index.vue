@@ -24,83 +24,69 @@
       </div>
     </div>
 
-    <div class="bg-white py-4 px-5 rounded-3 mb-3">
-      <div
-        class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3 w-100"
-      >
-        <p class="fw-bold text-dark mb-0 fs-5">Personal Information</p>
-
-        <ProfileEditPersonalInformationModal v-if="user" :user="user" />
-      </div>
-
-      <div class="d-flex flex-column gap-3">
-        <div class="row g-3">
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">First Name</p>
-            <p class="mb-0 text-dark">{{ user.firstName }}</p>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">Last Name</p>
-            <p class="mb-0 text-dark">{{ user.lastName }}</p>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">Email</p>
-            <p class="mb-0 text-dark">{{ user.email }}</p>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">Phone Number</p>
-            <p class="mb-0 text-dark">{{ user.phone }}</p>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">User Role</p>
-            <p class="mb-0 text-dark">{{ user.role }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white py-4 px-5 rounded-3 mb-3">
-      <div
-        class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3"
-      >
-        <p class="fw-bold text-dark mb-0 fs-5">Socials</p>
-        <ProfileEditSocialsModal v-if="user" :user="user" />
-      </div>
-
-      <div class="d-flex flex-column gap-3">
-        <div class="row g-3">
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">Twitter</p>
-            <p class="mb-0 text-dark text-truncate">
-              {{ user.socials.twitterUrl }}
-            </p>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">LinkedIn</p>
-            <p class="mb-0 text-dark text-truncate">
-              {{ user.socials.linkedinUrl }}
-            </p>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">Github</p>
-            <p class="mb-0 text-dark text-truncate">
-              {{ user.socials.githubUrl }}
-            </p>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <p class="mb-0 text-secondary">Behance</p>
-            <p class="mb-0 text-dark text-truncate">
-              {{ user.socials.behanceUrl }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ProfileSingleInfoSection
+      v-if="user"
+      :sectionTitle="'Personal Information'"
+      :editSectionModalComponent="EditPersonalInformationModal"
+      :editSectionModalProps="{
+        user,
+      }"
+      :data="[
+        {
+          label: 'First Name',
+          value: user.firstName,
+        },
+        {
+          label: 'Last Name',
+          value: user.lastName,
+        },
+        {
+          label: 'Email',
+          value: user.email,
+        },
+        {
+          label: 'Phone Number',
+          value: user.phone,
+        },
+        {
+          label: 'User Role',
+          value: user.role,
+        },
+      ]"
+    />
+    <ProfileSingleInfoSection
+      v-if="user"
+      :sectionTitle="'Socials'"
+      :editSectionModalComponent="EditSocialsModal"
+      :editSectionModalProps="{
+        user,
+      }"
+      :data="[
+        {
+          label: 'Twitter',
+          value: user.socials.twitterUrl,
+        },
+        {
+          label: 'LinkedIn',
+          value: user.socials.linkedinUrl,
+        },
+        {
+          label: 'Github',
+          value: user.socials.githubUrl,
+        },
+        {
+          label: 'Behance',
+          value: user.socials.behanceUrl,
+        },
+      ]"
+    />
   </div>
 </template>
 
 <script setup>
 import avatar from "../../../assets/img/avatars/6.png";
+import EditPersonalInformationModal from "~/components/profile/EditPersonalInformationModal.vue";
+import EditSocialsModal from "~/components/profile/EditSocialsModal.vue";
 const user = {
   firstName: "Alexandra",
   lastName: "Seraphinius",

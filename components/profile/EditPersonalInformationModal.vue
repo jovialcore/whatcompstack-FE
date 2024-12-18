@@ -106,5 +106,4 @@ const props = defineProps({
   user: Object,
 });
 const userInfo = ref(props.user);
-console.log({ userInfo });
 </script>
