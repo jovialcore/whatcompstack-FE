@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-4">
+  <div class="container py-4 flex-grow-1">
     <FormPagination :steps="steps" :currentStep="currentStep" />
 
     <form @submit.prevent="handleSubmit">
@@ -49,11 +49,7 @@
 </template>
 
 <script setup>
-const steps = [
-  { title: "Add Company" },
-  { title: "Add Stack" },
-  // { title: "Add Backend Stack" },
-];
+const steps = [{ title: "Add Company" }, { title: "Add Stack" }];
 
 const currentStep = ref(0);
 const formData = ref({
@@ -61,8 +57,16 @@ const formData = ref({
   about: "",
   websiteUrl: "",
   slug: "",
+  ceoName: "",
+  ceoContact: "",
+  ctoName: "",
+  ctoContact: "",
+  hrName: "",
+  hrContact: "",
+  logo: "",
   frontendStack: ["JavaScript"],
   backendStack: [],
+  mobileStack: [],
 });
 
 const updateFormData = (field, value) => {

@@ -39,7 +39,7 @@
   <p v-if="error" class="text-danger">{{ error }}</p>
 </template>
 <script setup>
-const inputTypes = ["text", "email", "password", "number", "tel"];
+const inputTypes = ["text", "email", "password", "number", "tel", "file"];
 const props = defineProps({
   inputType: {
     type: String,
@@ -61,7 +61,7 @@ const props = defineProps({
     type: String,
     default: "text",
     validator: (value) =>
-      ["text", "email", "password", "number", "tel"].includes(value),
+      ["text", "email", "password", "number", "tel", "file"].includes(value),
   },
   placeholder: {
     type: String,
