@@ -21,7 +21,8 @@ export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
       ...useRequestHeaders(["referer", "cookie"])
     }
   }
-  return useFetch("http://127.0.0.1:8000/" + path, {
+  const config = useRuntimeConfig();
+  return useFetch(`${config.public.apiBase}/${path}`, {
 
     credentials: "include",
     watch: false,
