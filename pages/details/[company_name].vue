@@ -94,10 +94,12 @@
 	console.log(route.params.details);
 	console.log(route.params.company_name);
 
+	const config = useRuntimeConfig();
+
 	try {
 		const { data: detail } = await useFetch(
 			() =>
-				`https://admin.whatcompanystack.com/api/company/stack/details/${route.params.company_name}`
+				`${config.public.apiBase}/api/company/stack/details/${route.params.company_name}`
 		);
 
 		company.value = detail.value.data;
@@ -112,6 +114,25 @@
 	} catch (err) {
 		company.value = null;
 	}
+
+	const siteUrl = useRequestURL().origin;
+
+	console.log(`${siteUrl}/whatcompanystack_logo.jpg`);
+
+	useSeoMeta({
+		title: () => company.value ? `${company.value.company}'s Tech Stack` : 'Company Tech Stack',
+		description: () => company.value
+			? `See the stack ${company.value.company} uses in production — backend, frontend, mobile, and infrastructure.`
+			: 'Discover the tech stack behind this company.',
+		ogTitle: () => company.value ? `${company.value.company}'s Tech Stack` : 'Company Tech Stack',
+		ogDescription: () => company.value
+			? `Discover the full tech stack powering ${company.value.company}.`
+			: undefined,
+		ogImage: () => company.value?.logo || `${siteUrl}/whatcompanystack_logo.jpg`,
+		ogImageAlt: () => company.value ? `${company.value.company} logo` : 'What Company Stack',
+		ogUrl: () => `${siteUrl}/details/${route.params.company_name}`,
+		twitterImage: () => company.value?.logo || `${siteUrl}/whatcompanystack_logo.jpg`,
+	});
 </script>
 
 <style>

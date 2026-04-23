@@ -1,3 +1,11 @@
+<script setup>
+useSeoMeta({
+	title: 'Privacy Policy',
+	description: 'How WhatCompanyStack collects, uses, and protects your personal information.',
+	robots: 'noindex, follow',
+});
+</script>
+
 <template>
 
     <div class="container-xxl flex-grow-1 container-p-y ">

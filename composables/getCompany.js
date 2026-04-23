@@ -12,8 +12,9 @@ const getCompany = (id) => {
 
 	const load = async () => {
 		try {
+			const config = useRuntimeConfig();
 			const res = await axios.get(
-				`${process.env.VUE_APP_ROOT_API}/api/company/stack/details/${id}`
+				`${config.public.apiBase}/api/company/stack/details/${id}`
 			);
 			company.value = res.data.data;
 
