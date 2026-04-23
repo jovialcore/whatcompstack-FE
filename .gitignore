@@ -6,8 +6,6 @@
 .cache
 dist
 
-#system
-.nvmrc
 
 # Node dependencies
 node_modules
