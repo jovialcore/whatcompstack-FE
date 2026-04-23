@@ -10,7 +10,9 @@ export default defineNuxtConfig({
 
   app:{
     head:{
+
       titleTemplate: '%s | What Company Stack',
+
       htmlAttrs: {
         lang: 'en'
       },
