@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://127.0.0.1:8000'
+      apiBase: 'http://127.0.0.1:8000'
     }
   },
 
@@ -41,6 +41,12 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ['vue-sonner']
+  },
+
+  vite: {
+    server: {
+      allowedHosts: ['.tunnelmole.net']
+    }
   }
 
 })

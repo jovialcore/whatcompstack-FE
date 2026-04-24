@@ -1,4 +1,12 @@
 <template>
+	<div style="background:#ffeaa7;color:#2d3436;padding:8px 12px;font-family:monospace;font-size:12px;border-bottom:1px solid #fdcb6e">
+		<strong>DEBUG</strong>
+		apiBase = <code>{{ debugApiBase || '(empty)' }}</code> ·
+		fetch URL = <code>{{ debugFetchUrl }}</code> ·
+		fetch ok = <code>{{ debugFetchOk }}</code>
+		<span v-if="debugFetchError"> · error = <code>{{ debugFetchError }}</code></span>
+	</div>
+
 	<div
 		class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
 		id="layout-navbar"
@@ -58,9 +66,14 @@
 
 	const config = useRuntimeConfig();
 	const baseUrl = `${config.public.apiBase}/api/companies`;
-		
+
+	const debugApiBase = config.public.apiBase;
+	const debugFetchUrl = baseUrl;
+	const debugFetchOk = ref(false);
+	const debugFetchError = ref('');
+
 	const getExpectedNoOfPages = (companiesMeta) => {
-		if (companiesMeta.total > companiesMeta.per_page) {
+		if (companiesMeta?.total > companiesMeta?.per_page) {
 			return Math.ceil(companiesMeta.total / companiesMeta.per_page);
 		}
 	};
@@ -69,7 +82,10 @@
 
     const { data: allCompanies, pending, error, refresh } = await getCompanies(baseUrl);
 
-	filteredCompanies.value = allCompanies.value.data;
+	debugFetchOk.value = !!allCompanies.value?.data;
+	debugFetchError.value = error.value ? String(error.value?.message || error.value) : '';
+
+	filteredCompanies.value = allCompanies.value?.data ?? [];
 
 	watch(searchTerm, (newTerm) => {
         if (searchTimeout.value) {
@@ -83,8 +99,8 @@
 
 	watch(debouncedSearchTerm, async (newTerm) => {
 		if (!newTerm) {
-			filteredCompanies.value = allCompanies.value.data;
-			expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value.meta);
+			filteredCompanies.value = allCompanies.value?.data ?? [];
+			expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value?.meta);
 			return;
 		}
 		const { data, error } = await getCompanies(`${baseUrl}?term=${newTerm}`);
@@ -96,7 +112,7 @@
 		expectedNoOfPages.value = getExpectedNoOfPages(data.value.meta);
 	});
 
-	expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value.meta);
+	expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value?.meta);
 
     const getPaginatedData = async (pageNumber) => {
         const pageEndValue = searchTerm.value ? `?term=${searchTerm.value}&page=${pageNumber}` : `?page=${pageNumber}`;

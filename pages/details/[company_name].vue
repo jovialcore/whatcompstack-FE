@@ -120,7 +120,7 @@
 	console.log(`${siteUrl}/whatcompanystack_logo.jpg`);
 
 	useSeoMeta({
-		title: () => company.value ? `${company.value.company}'s Tech Stack` : 'Company Tech Stack',
+		title: () => company.value ? `What-company-stack: ${company.value.company}'s Tech Stack` : 'What Company Stack',
 		description: () => company.value
 			? `See the stack ${company.value.company} uses in production — backend, frontend, mobile, and infrastructure.`
 			: 'Discover the tech stack behind this company.',
