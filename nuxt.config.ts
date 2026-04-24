@@ -10,9 +10,7 @@ export default defineNuxtConfig({
 
   app:{
     head:{
-
       titleTemplate: '%s | What Company Stack',
-
       htmlAttrs: {
         lang: 'en'
       },
@@ -43,6 +41,12 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ['vue-sonner']
+  },
+
+  vite: {
+    server: {
+      allowedHosts: ['.tunnelmole.net']
+    }
   }
 
 })

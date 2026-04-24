@@ -74,8 +74,6 @@
 
 <script setup>
 
-
-
 	const showLess = ref(true);
 
 	const toggleShowLess = () => {
@@ -90,9 +88,6 @@
 	let mobile_stacks = ref([]);
 
 	const route = useRoute();
-
-	console.log(route.params.details);
-	console.log(route.params.company_name);
 
 	const config = useRuntimeConfig();
 
@@ -117,10 +112,8 @@
 
 	const siteUrl = useRequestURL().origin;
 
-	console.log(`${siteUrl}/whatcompanystack_logo.jpg`);
-
 	useSeoMeta({
-		title: () => company.value ? `${company.value.company}'s Tech Stack` : 'Company Tech Stack',
+		title: () => company.value ? `What-company-stack: ${company.value.company}'s Tech Stack` : 'What Company Stack',
 		description: () => company.value
 			? `See the stack ${company.value.company} uses in production — backend, frontend, mobile, and infrastructure.`
 			: 'Discover the tech stack behind this company.',

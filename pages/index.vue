@@ -1,4 +1,6 @@
 <template>
+
+
 	<div
 		class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
 		id="layout-navbar"
@@ -58,9 +60,8 @@
 
 	const config = useRuntimeConfig();
 	const baseUrl = `${config.public.apiBase}/api/companies`;
-		
 	const getExpectedNoOfPages = (companiesMeta) => {
-		if (companiesMeta.total > companiesMeta.per_page) {
+		if (companiesMeta?.total > companiesMeta?.per_page) {
 			return Math.ceil(companiesMeta.total / companiesMeta.per_page);
 		}
 	};
@@ -69,7 +70,7 @@
 
     const { data: allCompanies, pending, error, refresh } = await getCompanies(baseUrl);
 
-	filteredCompanies.value = allCompanies.value.data;
+	filteredCompanies.value = allCompanies.value?.data ?? [];
 
 	watch(searchTerm, (newTerm) => {
         if (searchTimeout.value) {
@@ -83,8 +84,8 @@
 
 	watch(debouncedSearchTerm, async (newTerm) => {
 		if (!newTerm) {
-			filteredCompanies.value = allCompanies.value.data;
-			expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value.meta);
+			filteredCompanies.value = allCompanies.value?.data ?? [];
+			expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value?.meta);
 			return;
 		}
 		const { data, error } = await getCompanies(`${baseUrl}?term=${newTerm}`);
@@ -96,7 +97,7 @@
 		expectedNoOfPages.value = getExpectedNoOfPages(data.value.meta);
 	});
 
-	expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value.meta);
+	expectedNoOfPages.value = getExpectedNoOfPages(allCompanies.value?.meta);
 
     const getPaginatedData = async (pageNumber) => {
         const pageEndValue = searchTerm.value ? `?term=${searchTerm.value}&page=${pageNumber}` : `?page=${pageNumber}`;
