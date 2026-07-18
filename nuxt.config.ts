@@ -37,7 +37,10 @@ export default defineNuxtConfig({
   ]
   ,
   modules: [// ...
-    '@pinia/nuxt'],
+    '@pinia/nuxt',
+    'nuxt-og-image',
+    '@nuxtjs/sitemap'
+  ],
 
   build: {
     transpile: ['vue-sonner']
