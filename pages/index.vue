@@ -36,16 +36,21 @@
 <script setup>
 	const siteUrl = useRequestURL().origin;
 
-	useSeoMeta({
-		title: 'Browse Company Tech Stacks',
-		description: 'Search thousands of companies and see the frontend, backend, mobile, and infrastructure stacks they use in production.',
-		ogTitle: 'Browse Company Tech Stacks',
-		ogDescription: 'Search thousands of companies and see their production tech stacks.',
-		ogImage: `${siteUrl}/whatcompanystack_logo.jpg`,
-		ogImageAlt: 'What Company Stack',
-		ogUrl: siteUrl,
-		twitterImage: `${siteUrl}/whatcompanystack_logo.jpg`,
-	});
+
+	defineOgImage('company.takumi', {
+		title : 'Company Tech Stacks'
+	})
+
+	// useSeoMeta({
+	// 	title: 'Browse Company Tech Stacks',
+	// 	description: 'Search thousands of companies and see the frontend, backend, mobile, and infrastructure stacks they use in production.',
+	// 	ogTitle: 'Browse Company Tech Stacks',
+	// 	ogDescription: 'Search thousands of companies and see their production tech stacks.',
+	// 	ogImage: `${siteUrl}/whatcompanystack_logo.jpg`,
+	// 	ogImageAlt: 'What Company Stack',
+	// 	ogUrl: siteUrl,
+	// 	twitterImage: `${siteUrl}/whatcompanystack_logo.jpg`,
+	// });
 
 	let searchTerm = ref("");
 
@@ -58,6 +63,7 @@
 	const filteredCompanies = ref([]);
 	const expectedNoOfPages = ref(0);
 
+	
 	const config = useRuntimeConfig();
 	const baseUrl = `${config.public.apiBase}/api/companies`;
 	const getExpectedNoOfPages = (companiesMeta) => {
