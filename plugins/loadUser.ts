@@ -5,6 +5,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const auth = useAuthStore();
 
     if (!auth.isLoggedIn) {
-        await auth.fetchUser();
+        try {
+            await auth.fetchUser();
+        } catch (e) {
+            console.error("Failed to load user session", e);
+        }
     }
 })

@@ -72,7 +72,7 @@
 		}
 	};
 
-	const getCompanies = (url) =>  useFetch(() => url);
+	const getCompanies = (url) =>  useFetch(() => url, { timeout: 8000 });
 
     const { data: allCompanies, pending, error, refresh } = await getCompanies(baseUrl);
 

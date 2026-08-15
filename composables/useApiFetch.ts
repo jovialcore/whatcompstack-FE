@@ -26,6 +26,7 @@ export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
 
     credentials: "include",
     watch: false,
+    timeout: 8000,
     ...options,
 
     headers: {

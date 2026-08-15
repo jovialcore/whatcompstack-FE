@@ -94,7 +94,8 @@
 	try {
 		const { data: detail } = await useFetch(
 			() =>
-				`${config.public.apiBase}/api/company/stack/details/${route.params.company_name}`
+				`${config.public.apiBase}/api/company/stack/details/${route.params.company_name}`,
+			{ timeout: 8000 }
 		);
 
 		company.value = detail.value.data;
